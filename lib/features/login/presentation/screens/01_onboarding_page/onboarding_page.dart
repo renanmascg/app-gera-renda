@@ -4,8 +4,8 @@ import '../../../../../core/shared/colors.dart';
 import '../../../../../core/shared/styles.dart';
 import '../../../../../core/shared/texts/login_text.dart';
 import '../../widgets/main_button.dart';
+import '../02_login_page/login_page.dart';
 import '../03_create_account/create_account_page.dart';
-
 
 class OnboardingPage extends StatelessWidget {
   static final String id = 'onboarding_page';
@@ -59,21 +59,27 @@ class OnboardingPage extends StatelessWidget {
         children: <Widget>[
           MainButton(
             color: kMainGreenColor,
-            onPress: () => Navigator.pushNamed(context, CreateAccountPage.id),
+            onPress: () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              CreateAccountPage.id,
+              (Route<dynamic> route) => false,
+            ),
             text: 'Vamos começar!',
           ),
           SizedBox(height: 12),
-          _buildLoginRichText(),
+          _buildLoginRichText(context),
         ],
       ),
     );
   }
 
-  _buildLoginRichText() {
+  _buildLoginRichText(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('usuario Logado');
-      },
+      onTap: () => Navigator.pushNamedAndRemoveUntil(
+        context,
+        LoginPage.id,
+        (Route<dynamic> route) => false,
+      ),
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(

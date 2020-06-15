@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/features/login/presentation/screens/02_login_page/login_page.dart';
 import 'package:flutter_gera_renda/features/login/presentation/screens/04_create_account_pass/create_account_pass.dart';
 
 import 'features/login/presentation/screens/01_onboarding_page/onboarding_page.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         OnboardingPage.id: (ctx) => OnboardingPage(),
         CreateAccountPage.id: (ctx) => CreateAccountPage(),
-        CreateAccountPassPage.id: (ctx) => CreateAccountPassPage()
+        CreateAccountPassPage.id: (ctx) => CreateAccountPassPage(),
+         LoginPage.id: (ctx) =>  LoginPage()
       },
       initialRoute: OnboardingPage.id,
     );

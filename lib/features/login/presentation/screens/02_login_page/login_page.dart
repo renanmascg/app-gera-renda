@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/features/login/presentation/screens/02_login_page/login_page.dart';
+import 'package:flutter_gera_renda/core/shared/texts/login_text.dart';
+import 'package:flutter_gera_renda/features/login/presentation/screens/03_create_account/create_account_page.dart';
 
 import '../../../../../core/shared/colors.dart';
 import '../../../../../core/shared/styles.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
-import '../04_create_account_pass/create_account_pass.dart';
 
-class CreateAccountPage extends StatelessWidget {
-  static final String id = 'create_account';
+class LoginPage extends StatelessWidget {
+  static final String id = 'login_page';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CreateAccountPage extends StatelessWidget {
         alignment: Alignment.bottomRight,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text('Crie sua Conta',
+          child: Text(loginWelcomeBack,
               style: kMainLoginHeaderText, textAlign: TextAlign.end),
         ),
       ),
@@ -41,14 +41,14 @@ class CreateAccountPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        MainTextField(labelText: 'Nome'),
-        SizedBox(height: 24),
         MainTextField(labelText: 'Email'),
+        SizedBox(height: 24),
+        MainTextField(labelText: 'Senha', obscureText: true),
         SizedBox(height: 24),
         MainButton(
           color: kMainGreenColor,
-          text: 'Continue',
-          onPress: () => Navigator.pushNamed(context, CreateAccountPassPage.id),
+          text: 'Entrar',
+          onPress: () {},
         ),
         SizedBox(height: 12),
         _buildLoginRichText(context)
@@ -60,8 +60,8 @@ class CreateAccountPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamedAndRemoveUntil(
         context,
-        LoginPage.id,
-        (route) => false,
+        CreateAccountPage.id,
+        (Route<dynamic> route) => false,
       ),
       child: RichText(
         textAlign: TextAlign.center,
@@ -70,9 +70,9 @@ class CreateAccountPage extends StatelessWidget {
             color: Colors.black.withOpacity(0.5),
           ),
           children: [
-            TextSpan(text: 'Tem uma conta? '),
+            TextSpan(text: 'Ainda não tem uma conta? '),
             TextSpan(
-              text: 'Bora logar',
+              text: 'Bora criar',
               style: TextStyle(color: kMainGreenColor),
             )
           ],
