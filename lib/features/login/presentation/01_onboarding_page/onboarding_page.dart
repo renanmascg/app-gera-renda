@@ -1,10 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/colors.dart';
-import 'package:flutter_gera_renda/core/shared/styles.dart';
-import 'package:flutter_gera_renda/core/shared/widgets/main_button.dart';
 
+import '../../../../core/shared/colors.dart';
+import '../../../../core/shared/styles.dart';
 import '../../../../core/shared/texts/login_text.dart';
+import '../../../../core/shared/widgets/main_button.dart';
 
 class OnboardingPage extends StatelessWidget {
   static final String id = 'onboarding_page';
@@ -54,7 +53,6 @@ class OnboardingPage extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Column(
-
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           MainButton(
