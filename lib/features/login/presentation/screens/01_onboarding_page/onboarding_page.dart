@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/colors.dart';
-import '../../../../core/shared/styles.dart';
-import '../../../../core/shared/texts/login_text.dart';
-import '../../../../core/shared/widgets/main_button.dart';
+import '../../../../../core/shared/colors.dart';
+import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/texts/login_text.dart';
+import '../../widgets/main_button.dart';
+import '../03_create_account/create_account_page.dart';
+
 
 class OnboardingPage extends StatelessWidget {
   static final String id = 'onboarding_page';
@@ -14,18 +16,18 @@ class OnboardingPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(30),
-          child: _buildBody(),
+          child: _buildBody(context),
         ),
       ),
     );
   }
 
-  _buildBody() {
+  _buildBody(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         _buildLogoMessage(),
-        _buildBottomButton(),
+        _buildBottomButton(context),
       ],
     );
   }
@@ -49,7 +51,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  _buildBottomButton() {
+  _buildBottomButton(BuildContext context) {
     return Expanded(
       flex: 1,
       child: Column(
@@ -57,7 +59,7 @@ class OnboardingPage extends StatelessWidget {
         children: <Widget>[
           MainButton(
             color: kMainGreenColor,
-            onPress: () {},
+            onPress: () => Navigator.pushNamed(context, CreateAccountPage.id),
             text: 'Vamos começar!',
           ),
           SizedBox(height: 12),
