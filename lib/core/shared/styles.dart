@@ -3,19 +3,23 @@ import 'package:flutter_gera_renda/core/shared/colors.dart';
 
 final Radius kMainButtonBorderRadius = Radius.circular(6);
 
-final TextStyle kMainLoginHeaderText = TextStyle(
-  fontFamily: 'Poppins',
-  fontWeight: FontWeight.w600,
-  fontSize: 22,
-  color: kMainGreenColor
+final BoxShadow kMainBoxShadow = BoxShadow(
+  color: Colors.black.withOpacity(0.06),
+  blurRadius: 4,
+  offset: Offset(0, 4),
 );
 
+final TextStyle kMainLoginHeaderText = TextStyle(
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 22,
+    color: kMainGreenColor);
+
 final TextStyle kMainTextSemiBold = TextStyle(
-  fontFamily: 'Poppins',
-  fontWeight: FontWeight.w600,
-  fontSize: 16,
-  color: kMainTextBoldColor
-);
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    color: kMainTextBoldColor);
 
 final TextStyle kMainTextRegular = TextStyle(
   fontFamily: 'Poppins',
@@ -23,8 +27,7 @@ final TextStyle kMainTextRegular = TextStyle(
 );
 
 final TextStyle kMainTextFieldText = TextStyle(
-  fontFamily: 'Poppins',
-  fontWeight: FontWeight.w600,
-  fontSize: 18,
-  color: kMainTextBoldColor
-);
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    color: kMainTextBoldColor);

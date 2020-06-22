@@ -15,3 +15,17 @@ final TextStyle kBoldTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 18
 );
+
+final TextStyle kGridTextStyle = TextStyle(
+  color: kMainTextBoldColor,
+  fontFamily: 'Poppins',
+  fontWeight: FontWeight.w600,
+  fontSize: 12
+);
+
+final TextStyle kGreenTextStyle = TextStyle(
+  color: kMainGreenColor,
+  fontFamily: 'Poppins',
+  fontWeight: FontWeight.normal,
+  fontSize: 12
+);
