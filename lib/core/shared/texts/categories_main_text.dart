@@ -1,0 +1,1 @@
+const String WHAT_DO_YOU_NEED = 'Qual sua necessidade hoje ?';
