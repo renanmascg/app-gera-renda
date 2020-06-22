@@ -11,11 +11,10 @@ class CreateAccountPassPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: _buildAppBar(context),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal:20),
           child: _buildBody(),
         ),
       ),
@@ -50,7 +49,7 @@ class CreateAccountPassPage extends StatelessWidget {
         MainTextField(labelText: 'Senha', obscureText: true),
         SizedBox(height: 24),
         MainTextField(labelText: 'Confirme sua Senha', obscureText: true),
-        SizedBox(height: 45),
+        SizedBox(height: 24),
         MainButton(
           color: kMainGreenColor,
           text: 'Finalizar',

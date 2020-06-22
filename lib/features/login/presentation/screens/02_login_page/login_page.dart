@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal:20),
           child: _buildBody(context),
         ),
       ),
