@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/core/shared/colors.dart';
 
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
 
@@ -15,9 +16,10 @@ class AppRoutes extends StatelessWidget {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         backgroundColor: Colors.white,
+        activeColor: kMainOrangeColor,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
+            icon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(icon: Icon(Icons.search)),
           BottomNavigationBarItem(
