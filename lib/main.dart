@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/features/login/presentation/screens/02_login_page/login_page.dart';
-import 'package:flutter_gera_renda/features/login/presentation/screens/04_create_account_pass/create_account_pass.dart';
 
+import 'features/app_routes/app_routes.dart';
 import 'features/login/presentation/screens/01_onboarding_page/onboarding_page.dart';
+import 'features/login/presentation/screens/02_login_page/login_page.dart';
 import 'features/login/presentation/screens/03_create_account/create_account_page.dart';
+import 'features/login/presentation/screens/04_create_account_pass/create_account_pass.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
         OnboardingPage.id: (ctx) => OnboardingPage(),
         CreateAccountPage.id: (ctx) => CreateAccountPage(),
         CreateAccountPassPage.id: (ctx) => CreateAccountPassPage(),
-         LoginPage.id: (ctx) =>  LoginPage()
+        LoginPage.id: (ctx) =>  LoginPage(),
+        AppRoutes.id: (ctx) => AppRoutes()
       },
-      initialRoute: OnboardingPage.id,
+      initialRoute: AppRoutes.id,
     );
   }
 }
