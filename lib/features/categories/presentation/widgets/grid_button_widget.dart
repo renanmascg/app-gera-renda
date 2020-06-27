@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/styles.dart';
-import 'package:flutter_gera_renda/features/categories/presentation/styles/text_styles.dart';
+
+import '../../../../core/shared/styles.dart';
+import '../styles/text_styles.dart';
 
 class GridButtonWidget extends StatelessWidget {
   final String categorie;

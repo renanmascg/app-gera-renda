@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/colors.dart';
 
+import '../../core/shared/colors.dart';
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
+import '../categories/presentation/screens/02_all_categories/all_categories_page.dart';
 
 class AppRoutes extends StatelessWidget {
-  static final id = 'app_routes';
+  static final String id = 'app_routes';
 
-  final routes = {
+  final Map<String, Widget Function(BuildContext)> routes = {
     CategoriesMainPage.id: (ctx) => CategoriesMainPage(),
+    AllCategoriesPage.id: (ctx) => AllCategoriesPage()
   };
 
   @override
@@ -31,7 +33,7 @@ class AppRoutes extends StatelessWidget {
         switch (index) {
           case 0:
             return CupertinoTabView(
-              routes: {},
+              routes: routes,
               builder: (_) {
                 return CategoriesMainPage();
               },

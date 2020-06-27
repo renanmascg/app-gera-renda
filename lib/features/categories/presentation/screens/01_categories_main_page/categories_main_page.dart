@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/styles.dart';
 
 import '../../../../../core/shared/colors.dart';
+import '../../../../../core/shared/styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
 import '../../widgets/grid_button_widget.dart';
+import '../02_all_categories/all_categories_page.dart';
 
 class CategoriesMainPage extends StatelessWidget {
   static final String id = 'categories_main_page';
@@ -28,7 +29,7 @@ class CategoriesMainPage extends StatelessWidget {
           slivers: <Widget>[
             _buildHeader(),
             _buildTextWithRedirect(
-                CATEGORIES, () => print('TODAS AS CATEGORIAS')),
+                CATEGORIES, () => Navigator.pushNamed(context, AllCategoriesPage.id)),
             _buildCategoriesGrid(),
             _buildTextWithRedirect(NEARBY_YOU,
                 () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
