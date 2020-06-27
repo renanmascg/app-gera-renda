@@ -39,7 +39,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildHeader() {
+  Widget _buildHeader() {
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(left: 20, right: 20, top: 66),
@@ -62,7 +62,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildCategoriesGrid() {
+  Widget _buildCategoriesGrid() {
     return SliverPadding(
       padding: EdgeInsets.only(right: 20, left: 20),
       sliver: SliverGrid.count(
@@ -77,20 +77,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildSimpleTitleText(String text, EdgeInsets padding) {
-    return SliverPadding(
-      padding: padding,
-      sliver: SliverToBoxAdapter(
-        child: Text(
-          text,
-          style: kBoldTextStyle,
-          textAlign: TextAlign.start,
-        ),
-      ),
-    );
-  }
-
-  _buildTextWithRedirect(String text, Function onPress) {
+  Widget _buildTextWithRedirect(String text, void Function() onPress) {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 22),
       sliver: SliverToBoxAdapter(
@@ -108,7 +95,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildListOfServices() {
+  Widget _buildListOfServices() {
     return SliverPadding(
       padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
       sliver: SliverList(
@@ -122,7 +109,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildListItem() {
+  Widget _buildListItem() {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.all(15),
@@ -184,7 +171,7 @@ class CategoriesMainPage extends StatelessWidget {
                       width: 30,
                       height: 30,
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Image.asset(
                       'assets/categories/eletrica_icon.png',
                       width: 30,
@@ -200,7 +187,7 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  _buildListItemDetailText(String text, String title,
+  Widget _buildListItemDetailText(String text, String title,
       {Color color = kMainTextBoldColor}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

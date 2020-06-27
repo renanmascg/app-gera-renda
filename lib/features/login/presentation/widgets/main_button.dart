@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gera_renda/core/shared/styles.dart';
 
 class MainButton extends StatelessWidget {
-  final Function onPress;
+  final void Function() onPress;
   final String text;
   final Color color;
 

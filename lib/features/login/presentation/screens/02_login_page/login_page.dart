@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _buildAppBar() {
+  PreferredSize _buildAppBar() {
     return PreferredSize(
       preferredSize: Size.fromHeight(60),
       child: Align(
@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _buildLoginRichText(BuildContext context) {
+  Widget _buildLoginRichText(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamedAndRemoveUntil(
         context,

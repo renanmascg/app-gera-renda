@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -32,7 +32,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  _buildLogoMessage() {
+  Widget _buildLogoMessage() {
     return Expanded(
       flex: 3,
       child: Column(
@@ -51,7 +51,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  _buildBottomButton(BuildContext context) {
+  Widget _buildBottomButton(BuildContext context) {
     return Expanded(
       flex: 1,
       child: Column(
@@ -73,7 +73,7 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  _buildLoginRichText(BuildContext context) {
+  Widget _buildLoginRichText(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamedAndRemoveUntil(
         context,

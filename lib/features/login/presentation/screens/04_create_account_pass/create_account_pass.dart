@@ -21,7 +21,7 @@ class CreateAccountPassPage extends StatelessWidget {
     );
   }
 
-  _buildAppBar(BuildContext context) {
+  PreferredSize _buildAppBar(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(60),
       child: Padding(
@@ -42,7 +42,7 @@ class CreateAccountPassPage extends StatelessWidget {
     );
   }
 
-  _buildBody() {
+  Widget _buildBody() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
