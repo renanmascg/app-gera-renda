@@ -6,7 +6,7 @@ import '../styles/text_styles.dart';
 class GridButtonWidget extends StatelessWidget {
   final String categorie;
 
-  const GridButtonWidget({ this.categorie });
+  const GridButtonWidget({this.categorie});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,14 @@ class GridButtonWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/categories/${categorie.toLowerCase()}_icon.png'),
-            Text(
-              categorie,
-              style: kGridTextStyle,
-              textAlign: TextAlign.center,
+            Image.asset(
+                'assets/categories/${categorie.toLowerCase()}_icon.png'),
+            Expanded(
+              child: Text(
+                categorie,
+                style: kGridTextStyle,
+                textAlign: TextAlign.center,
+              ),
             )
           ],
         ),

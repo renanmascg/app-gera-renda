@@ -29,3 +29,9 @@ final TextStyle kGreenTextStyle = TextStyle(
   fontWeight: FontWeight.normal,
   fontSize: 12
 );
+
+final TextStyle kSecondaryGridTextStyle = TextStyle(
+  color: kTextSecondaryGreyColor,
+  fontFamily: 'Poppins',
+  fontSize: 10,
+);
