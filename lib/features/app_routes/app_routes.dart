@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import '../../core/shared/colors.dart';
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
 import '../categories/presentation/screens/02_all_categories/all_categories_page.dart';
+import '../categories/presentation/screens/03_categorie_page/categorie_page.dart';
 
 class AppRoutes extends StatelessWidget {
   static final String id = 'app_routes';
 
   final Map<String, Widget Function(BuildContext)> routes = {
     CategoriesMainPage.id: (ctx) => CategoriesMainPage(),
-    AllCategoriesPage.id: (ctx) => AllCategoriesPage()
+    AllCategoriesPage.id: (ctx) => AllCategoriesPage(),
+    CategoriePage.id: (ctx) => CategoriePage()
   };
 
   @override

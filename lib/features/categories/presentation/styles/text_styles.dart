@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/colors.dart';
+
+import '../../../../core/shared/colors.dart';
 import 'colors.dart';
 
 final TextStyle kSecondaryTextStyle = TextStyle(
@@ -34,4 +35,11 @@ final TextStyle kSecondaryGridTextStyle = TextStyle(
   color: kTextSecondaryGreyColor,
   fontFamily: 'Poppins',
   fontSize: 10,
+);
+
+final TextStyle kChipTextStyle = TextStyle(
+  color: kMainTextBoldColor,
+  fontFamily: 'Poppins',
+  fontSize: 12,
+  fontWeight: FontWeight.w500
 );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/shared/styles.dart';
+import '../screens/03_categorie_page/categorie_page.dart';
 import '../styles/text_styles.dart';
 
 class GridButtonWidget extends StatelessWidget {
@@ -12,9 +13,7 @@ class GridButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.all(0),
-      onPressed: () {
-        print('botao grid');
-      },
+      onPressed: () => Navigator.pushNamed(context, CategoriePage.id),
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
