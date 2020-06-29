@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/shared/colors.dart';
+import '../styles/colors.dart';
 import '../styles/text_styles.dart';
 
 class SliverMainHeader extends StatelessWidget {
@@ -12,8 +14,9 @@ class SliverMainHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       title: Text(text, style: kBoldTextStyle.copyWith(fontSize: 22)),
+      pinned: true,
       centerTitle: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: kMainBackground,
       elevation: 0,
       leading: IconButton(
         onPressed: onPress ?? () => Navigator.maybePop(context),

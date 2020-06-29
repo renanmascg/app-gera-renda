@@ -18,6 +18,14 @@ class AllCategoriesPage extends StatelessWidget {
     'Segurança',
     'Fechadura',
     'Eventos',
+    'Beleza',
+    'Segurança',
+    'Fechadura',
+    'Eventos',
+    'Beleza',
+    'Segurança',
+    'Fechadura',
+    'Eventos',
     
   ];
 
