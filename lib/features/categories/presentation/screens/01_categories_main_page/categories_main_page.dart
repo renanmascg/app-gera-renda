@@ -6,6 +6,7 @@ import '../../styles/text_styles.dart';
 import '../../widgets/grid_button_widget.dart';
 import '../../widgets/service_item_widget.dart';
 import '../02_all_categories/all_categories_page.dart';
+import '../04_single_service_page/single_service_page.dart';
 
 class CategoriesMainPage extends StatelessWidget {
   static final String id = 'categories_main_page';
@@ -27,12 +28,12 @@ class CategoriesMainPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: <Widget>[
             _buildHeader(),
-            _buildTextWithRedirect(
-                CATEGORIES, () => Navigator.pushNamed(context, AllCategoriesPage.id)),
+            _buildTextWithRedirect(CATEGORIES,
+                () => Navigator.pushNamed(context, AllCategoriesPage.id)),
             _buildCategoriesGrid(),
             _buildTextWithRedirect(NEARBY_YOU,
                 () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
-            _buildListOfServices()
+            _buildListOfServices(context)
           ],
         ),
       ),
@@ -95,19 +96,19 @@ class CategoriesMainPage extends StatelessWidget {
     );
   }
 
-  Widget _buildListOfServices() {
+  Widget _buildListOfServices(BuildContext context) {
     return SliverPadding(
       padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (ctx, index) {
-            return ServiceItemWidget();
+            return ServiceItemWidget(
+              onTap: () => Navigator.pushNamed(context, SingleServicePage.id),
+            );
           },
           childCount: 10,
         ),
       ),
     );
   }
-
-  
 }

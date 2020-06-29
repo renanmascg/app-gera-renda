@@ -5,6 +5,7 @@ import '../../../../../core/shared/styles.dart';
 import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
 import '../../widgets/service_item_widget.dart';
+import '../04_single_service_page/single_service_page.dart';
 
 class CategoriePage extends StatelessWidget {
   static final String id = 'categorie_page';
@@ -14,7 +15,7 @@ class CategoriePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kMainBackground,
       appBar: _buildAppBar(context),
-      body: _buildBody(),
+      body: _buildBody(context),
     );
   }
 
@@ -62,12 +63,14 @@ class CategoriePage extends StatelessWidget {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 5),
-          child: ListView(
+      child: ListView(
         children: List.generate(10, (index) {
-          return ServiceItemWidget();
+          return ServiceItemWidget(
+            onTap: () => Navigator.pushNamed(context, SingleServicePage.id),
+          );
         }),
       ),
     );

@@ -5,29 +5,36 @@ import '../../../../core/shared/styles.dart';
 import '../styles/text_styles.dart';
 
 class ServiceItemWidget extends StatelessWidget {
+  final void Function() onTap;
+
+  const ServiceItemWidget({@required this.onTap});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(15),
-      height: 130,
-      decoration:
-          BoxDecoration(color: Colors.white, boxShadow: [kMainBoxShadow]),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                CircleAvatar(),
-                SizedBox(width: 18),
-                _buildNameAndReviewsInfo()
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 20),
+        padding: EdgeInsets.all(15),
+        height: 130,
+        decoration:
+            BoxDecoration(color: Colors.white, boxShadow: [kMainBoxShadow]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(),
+                  SizedBox(width: 18),
+                  _buildNameAndReviewsInfo()
+                ],
+              ),
             ),
-          ),
-          Divider(color: kDividerGreyColor),
-          _buildServiceSecondaryInfo()
-        ],
+            Divider(color: kDividerGreyColor),
+            _buildServiceSecondaryInfo()
+          ],
+        ),
       ),
     );
   }
