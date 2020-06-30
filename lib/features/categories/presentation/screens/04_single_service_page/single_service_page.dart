@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/features/categories/presentation/widgets/review_item_widget.dart';
 
 import '../../../../../core/shared/colors.dart';
 import '../../../../../core/shared/styles.dart';
@@ -14,7 +15,14 @@ class SingleServicePage extends StatelessWidget {
       child: CustomScrollView(
         slivers: <Widget>[
           SliverMainHeader(text: ''),
-          _buildHeaderServiceInfo()
+          _buildHeaderServiceInfo(),
+          _buildTextTitle('Descrição'),
+          _buildDescriptionText(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
+          _buildTextTitle('Serviços'),
+          _buildServiceList(),
+          _buildTextTitle('Avaliações'),
+          _buildReviewList()
         ],
       ),
     );
@@ -43,14 +51,15 @@ class SingleServicePage extends StatelessWidget {
 
   Widget _buildWorkReviewItems() {
     return Expanded(
+      flex: 2,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildListItemDetailText('124', 'Trabalhos'),
+          _buildListItemDetailText('124', 'TRABALHOS'),
           SizedBox(width: 10),
-          _buildListItemDetailText('300', 'Avaliações'),
+          _buildListItemDetailText('300', 'AVALIAÇÕES'),
           SizedBox(width: 10),
-          _buildListItemDetailText('4.5', 'Rating')
+          _buildStarRatingIcon('RATING', '3.8')
         ],
       ),
     );
@@ -93,12 +102,112 @@ class SingleServicePage extends StatelessWidget {
   }
 
   Widget _buildIconButton(String text, void Function() onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: CircleAvatar(
-        radius: 25,
-        backgroundColor: kBackgroundIconColor,
-        child: Image.asset('assets/service_page/$text.png'),
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: CircleAvatar(
+          radius: 25,
+          backgroundColor: kBackgroundIconColor,
+          child: Image.asset('assets/service_page/$text.png'),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStarRatingIcon(String title, String rating) {
+    return Column(
+      children: <Widget>[
+        Text(
+          title,
+          style: kSecondaryTextStyle.copyWith(fontSize: 10),
+          textAlign: TextAlign.start,
+        ),
+        Row(
+          children: <Widget>[
+            Image.asset('assets/star_icon.png'),
+            SizedBox(width: 5),
+            Text(
+              rating,
+              style: kMainTextSemiBold.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: kMainTextBoldColor,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTextTitle(String text) {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+      sliver: SliverToBoxAdapter(
+        child: Text(text, style: kBoldTextStyle),
+      ),
+    );
+  }
+
+  Widget _buildDescriptionText(String text) {
+    return SliverPadding(
+      padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+      sliver: SliverToBoxAdapter(
+        child: Text(text, style: kMainTextRegular),
+      ),
+    );
+  }
+
+  Widget _buildServiceList() {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((ctx, index) {
+        return _listItem('', '', 1500.0);
+      }, childCount: 5),
+    );
+  }
+
+  Widget _listItem(String title, String description, num value) {
+    return Container(
+      padding: EdgeInsets.only(right: 20, left: 20),
+      margin: EdgeInsets.only(bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Broken Pipe',
+                  style: kMainTextRegular,
+                ),
+                Text(
+                  'Broken internal pipes within the wall Broken internal pipes within the wall',
+                  style: kMainTextSubtitleRegular,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 5),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              'R\$ ${value.toStringAsFixed(2)}',
+              style: kMainTextRegular,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildReviewList() {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate((ctx, index) {
+          return ReviewItemWidget();
+        }, childCount: 3),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/colors.dart';
+
+import 'colors.dart';
 
 final Radius kMainButtonBorderRadius = Radius.circular(6);
 
@@ -23,11 +24,21 @@ final TextStyle kMainTextSemiBold = TextStyle(
 
 final TextStyle kMainTextRegular = TextStyle(
   fontFamily: 'Poppins',
+  color: kMainTextBoldColor,
   fontSize: 12,
+  fontWeight: FontWeight.w500
 );
 
 final TextStyle kMainTextFieldText = TextStyle(
-    fontFamily: 'Poppins',
-    fontWeight: FontWeight.w600,
-    fontSize: 18,
-    color: kMainTextBoldColor);
+  fontFamily: 'Poppins',
+  fontWeight: FontWeight.w600,
+  fontSize: 18,
+  color: kMainTextBoldColor,
+);
+
+final TextStyle kMainTextSubtitleRegular = TextStyle(
+  fontSize: 10,
+  fontFamily: 'Poppins',
+  fontWeight: FontWeight.normal,
+  color: kMainTextBoldColor.withOpacity(0.62)
+);
