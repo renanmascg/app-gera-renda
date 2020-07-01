@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/styles.dart';
+import 'package:flutter_gera_renda/core/shared/styles/text_styles.dart';
 
 class MainTextField extends StatelessWidget {
   final String labelText;

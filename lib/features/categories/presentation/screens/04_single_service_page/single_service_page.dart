@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
-import '../../styles/colors.dart';
-import '../../styles/text_styles.dart';
-import '../../widgets/review_item_widget.dart';
-import '../../widgets/simple_widgets.dart';
-import '../../widgets/sliver_main_header_widget.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
+import '../../../../../core/shared/widgets/review_item_widget.dart';
+import '../../../../../core/shared/widgets/simple_widgets.dart';
+import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
 import '../05_all_reviews/all_reviews_page.dart';
 
 class SingleServicePage extends StatelessWidget {

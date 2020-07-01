@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
-import '../../styles/colors.dart';
-import '../../styles/text_styles.dart';
-import '../../widgets/service_item_widget.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
+import '../../../../../core/shared/widgets/service_item_widget.dart';
 import '../04_single_service_page/single_service_page.dart';
 
 class CategoriePage extends StatelessWidget {

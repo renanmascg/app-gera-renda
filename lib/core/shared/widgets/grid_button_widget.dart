@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/styles.dart';
-import '../screens/03_categorie_page/categorie_page.dart';
+import '../../../features/categories/presentation/screens/03_categorie_page/categorie_page.dart';
 import '../styles/text_styles.dart';
 
 class GridButtonWidget extends StatelessWidget {

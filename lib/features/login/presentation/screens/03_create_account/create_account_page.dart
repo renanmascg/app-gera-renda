@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gera_renda/features/login/presentation/screens/02_login_page/login_page.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
 import '../04_create_account_pass/create_account_pass.dart';

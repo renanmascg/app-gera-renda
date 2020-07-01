@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/colors.dart';
-import '../../../../core/shared/styles.dart';
+import '../styles/colors.dart';
 import '../styles/text_styles.dart';
 
 class ServiceItemWidget extends StatelessWidget {

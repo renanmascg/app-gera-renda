@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
-import '../../styles/colors.dart';
-import '../../styles/text_styles.dart';
-import '../../widgets/sliver_main_header_widget.dart';
+import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
+
 
 class AllCategoriesPage extends StatelessWidget {
   static final String id = 'all_categories';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/colors.dart';
 import '../styles/colors.dart';
 
 class SliverMainHeader extends StatelessWidget {

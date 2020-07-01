@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/shared/colors.dart';
+import '../../core/shared/styles/colors.dart';
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
 import '../categories/presentation/screens/02_all_categories/all_categories_page.dart';
 import '../categories/presentation/screens/03_categorie_page/categorie_page.dart';
 import '../categories/presentation/screens/04_single_service_page/single_service_page.dart';
 import '../categories/presentation/screens/05_all_reviews/all_reviews_page.dart';
+import '../search/presentation/screens/01_search_page/search_page.dart';
+import '../search/presentation/screens/02_search_found_page/search_found_page.dart';
 
 class AppRoutes extends StatelessWidget {
   static final String id = 'app_routes';
@@ -16,7 +18,9 @@ class AppRoutes extends StatelessWidget {
     AllCategoriesPage.id: (ctx) => AllCategoriesPage(),
     CategoriePage.id: (ctx) => CategoriePage(),
     SingleServicePage.id: (ctx) => SingleServicePage(),
-    AllReviewsPage.id: (ctx) => AllReviewsPage()
+    AllReviewsPage.id: (ctx) => AllReviewsPage(),
+    SearchPage.id: (ctx) => SearchPage(),
+    SearchFoundPage.id: (ctx) => SearchFoundPage()
   };
 
   @override
@@ -42,6 +46,13 @@ class AppRoutes extends StatelessWidget {
               routes: routes,
               builder: (_) {
                 return CategoriesMainPage();
+              },
+            );
+          case 1:
+            return CupertinoTabView(
+              routes: routes,
+              builder: (_) {
+                return SearchPage();
               },
             );
           default:

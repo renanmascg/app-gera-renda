@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gera_renda/core/shared/texts/login_text.dart';
 import 'package:flutter_gera_renda/features/login/presentation/screens/03_create_account/create_account_page.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
 

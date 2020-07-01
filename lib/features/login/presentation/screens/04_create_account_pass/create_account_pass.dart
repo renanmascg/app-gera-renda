@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
 

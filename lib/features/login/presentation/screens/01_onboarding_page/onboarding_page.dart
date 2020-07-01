@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/colors.dart';
-import '../../../../../core/shared/styles.dart';
+import '../../../../../core/shared/styles/colors.dart';
+import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/login_text.dart';
 import '../../widgets/main_button.dart';
 import '../02_login_page/login_page.dart';

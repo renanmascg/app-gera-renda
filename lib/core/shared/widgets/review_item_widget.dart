@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/styles.dart';
 import '../styles/text_styles.dart';
 
 class ReviewItemWidget extends StatelessWidget {
