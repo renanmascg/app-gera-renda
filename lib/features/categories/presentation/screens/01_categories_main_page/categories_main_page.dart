@@ -5,6 +5,7 @@ import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
 import '../../widgets/grid_button_widget.dart';
 import '../../widgets/service_item_widget.dart';
+import '../../widgets/simple_widgets.dart';
 import '../02_all_categories/all_categories_page.dart';
 import '../04_single_service_page/single_service_page.dart';
 
@@ -28,10 +29,10 @@ class CategoriesMainPage extends StatelessWidget {
         child: CustomScrollView(
           slivers: <Widget>[
             _buildHeader(),
-            _buildTextWithRedirect(CATEGORIES,
+            buildTextWithRedirect(CATEGORIES,
                 () => Navigator.pushNamed(context, AllCategoriesPage.id)),
             _buildCategoriesGrid(),
-            _buildTextWithRedirect(NEARBY_YOU,
+            buildTextWithRedirect(NEARBY_YOU,
                 () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
             _buildListOfServices(context)
           ],
@@ -74,24 +75,6 @@ class CategoriesMainPage extends StatelessWidget {
         children: categoriesList.map((cat) {
           return GridButtonWidget(categorie: cat);
         }).toList(),
-      ),
-    );
-  }
-
-  Widget _buildTextWithRedirect(String text, void Function() onPress) {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 22),
-      sliver: SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(text, style: kBoldTextStyle),
-            GestureDetector(
-              onTap: onPress,
-              child: Text(VIEW_ALL, style: kGreenTextStyle),
-            )
-          ],
-        ),
       ),
     );
   }

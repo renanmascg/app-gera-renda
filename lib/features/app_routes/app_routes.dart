@@ -6,6 +6,7 @@ import '../categories/presentation/screens/01_categories_main_page/categories_ma
 import '../categories/presentation/screens/02_all_categories/all_categories_page.dart';
 import '../categories/presentation/screens/03_categorie_page/categorie_page.dart';
 import '../categories/presentation/screens/04_single_service_page/single_service_page.dart';
+import '../categories/presentation/screens/05_all_reviews/all_reviews_page.dart';
 
 class AppRoutes extends StatelessWidget {
   static final String id = 'app_routes';
@@ -14,7 +15,8 @@ class AppRoutes extends StatelessWidget {
     CategoriesMainPage.id: (ctx) => CategoriesMainPage(),
     AllCategoriesPage.id: (ctx) => AllCategoriesPage(),
     CategoriePage.id: (ctx) => CategoriePage(),
-    SingleServicePage.id: (ctx) => SingleServicePage()
+    SingleServicePage.id: (ctx) => SingleServicePage(),
+    AllReviewsPage.id: (ctx) => AllReviewsPage()
   };
 
   @override

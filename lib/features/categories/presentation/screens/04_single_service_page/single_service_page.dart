@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/features/categories/presentation/widgets/review_item_widget.dart';
 
 import '../../../../../core/shared/colors.dart';
 import '../../../../../core/shared/styles.dart';
+import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
+import '../../widgets/review_item_widget.dart';
+import '../../widgets/simple_widgets.dart';
 import '../../widgets/sliver_main_header_widget.dart';
+import '../05_all_reviews/all_reviews_page.dart';
 
 class SingleServicePage extends StatelessWidget {
   static final String id = 'single_service';
@@ -12,18 +15,22 @@ class SingleServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverMainHeader(text: ''),
-          _buildHeaderServiceInfo(),
-          _buildTextTitle('Descrição'),
-          _buildDescriptionText(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
-          _buildTextTitle('Serviços'),
-          _buildServiceList(),
-          _buildTextTitle('Avaliações'),
-          _buildReviewList()
-        ],
+      child: Container(
+        color: kMainBackground,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverMainHeader(text: ''),
+            _buildHeaderServiceInfo(),
+            buildTextTitle('Descrição'),
+            _buildDescriptionText(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
+            buildTextTitle('Serviços'),
+            _buildServiceList(),
+            buildTextWithRedirect('Avaliações',
+                () => Navigator.pushNamed(context, AllReviewsPage.id)),
+            _buildReviewList()
+          ],
+        ),
       ),
     );
   }
@@ -137,15 +144,6 @@ class SingleServicePage extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildTextTitle(String text) {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 22),
-      sliver: SliverToBoxAdapter(
-        child: Text(text, style: kBoldTextStyle),
-      ),
     );
   }
 
