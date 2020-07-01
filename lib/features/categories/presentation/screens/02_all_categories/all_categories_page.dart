@@ -26,7 +26,6 @@ class AllCategoriesPage extends StatelessWidget {
     'Segurança',
     'Fechadura',
     'Eventos',
-    
   ];
 
   @override
@@ -36,7 +35,12 @@ class AllCategoriesPage extends StatelessWidget {
         color: kMainBackground,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverMainHeader(text: CATEGORIES),
+            SliverMainHeader(
+              title: Text(
+                CATEGORIES,
+                style: kBoldTextStyle.copyWith(fontSize: 22),
+              ),
+            ),
             _buildCategoriesGrid()
           ],
         ),
@@ -89,7 +93,10 @@ Widget _buildGridItem(String categorie) {
                 categorie,
                 style: kGridTextStyle,
               ),
-              Text('230 Perto de você', style: kSecondaryGridTextStyle,)
+              Text(
+                '230 Perto de você',
+                style: kSecondaryGridTextStyle,
+              )
             ],
           ),
         )

@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/shared/colors.dart';
 import '../styles/colors.dart';
-import '../styles/text_styles.dart';
 
 class SliverMainHeader extends StatelessWidget {
-  final String text;
+  final Widget title;
   final void Function() onPress;
+  final PreferredSizeWidget bottom;
 
-  const SliverMainHeader({@required this.text, this.onPress});
+  const SliverMainHeader({@required this.title, this.onPress, this.bottom});
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text(text, style: kBoldTextStyle.copyWith(fontSize: 22)),
+      title: title,
       pinned: true,
       centerTitle: false,
       backgroundColor: kMainBackground,
@@ -25,6 +25,7 @@ class SliverMainHeader extends StatelessWidget {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
       ),
+      bottom: bottom,
     );
   }
 }

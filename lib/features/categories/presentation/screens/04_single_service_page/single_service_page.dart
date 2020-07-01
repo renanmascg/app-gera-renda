@@ -19,7 +19,7 @@ class SingleServicePage extends StatelessWidget {
         color: kMainBackground,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverMainHeader(text: ''),
+            SliverMainHeader(title: Container()),
             _buildHeaderServiceInfo(),
             buildTextTitle('Descrição'),
             _buildDescriptionText(
