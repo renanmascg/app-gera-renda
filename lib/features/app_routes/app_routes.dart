@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/shared/styles/colors.dart';
+import '../called_services/presentation/screens/01_last_service_called/last_service_called_page.dart';
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
 import '../categories/presentation/screens/02_all_categories/all_categories_page.dart';
 import '../categories/presentation/screens/03_categorie_page/categorie_page.dart';
@@ -21,7 +22,8 @@ class AppRoutes extends StatelessWidget {
     SingleServicePage.id: (ctx) => SingleServicePage(),
     AllReviewsPage.id: (ctx) => AllReviewsPage(),
     SearchPage.id: (ctx) => SearchPage(),
-    SearchFoundPage.id: (ctx) => SearchFoundPage()
+    SearchFoundPage.id: (ctx) => SearchFoundPage(),
+    LastServiceCalledPage.id: (ctx) => LastServiceCalledPage()
   };
 
   @override
@@ -51,6 +53,13 @@ class AppRoutes extends StatelessWidget {
               routes: routes,
               builder: (_) {
                 return SearchPage();
+              },
+            );
+          case 2:
+            return CupertinoTabView(
+              routes: routes,
+              builder: (_) {
+                return LastServiceCalledPage();
               },
             );
           default:
