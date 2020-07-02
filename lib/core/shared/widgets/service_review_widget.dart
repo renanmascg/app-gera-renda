@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../styles/colors.dart';
 import '../styles/text_styles.dart';
+import 'modals/generic_modal_sheet.dart';
 
 class ServiceReviewWidget extends StatelessWidget {
   final void Function() onTap;
+  final Widget modalScreen;
 
-  const ServiceReviewWidget({@required this.onTap});
+  const ServiceReviewWidget({@required this.onTap, @required this.modalScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +31,18 @@ class ServiceReviewWidget extends StatelessWidget {
                   _buildNameAndReviewsInfo(),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.arrow_forward_ios, size: 20, color: kMainTextBoldColor,),
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                      color: kMainTextBoldColor,
+                    ),
                     color: kMainTextBoldColor,
                   )
                 ],
               ),
             ),
             Divider(color: kDividerGreyColor),
-            _buildServiceSecondaryInfo()
+            _buildServiceSecondaryInfo(context)
           ],
         ),
       ),
@@ -59,7 +65,7 @@ class ServiceReviewWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceSecondaryInfo() {
+  Widget _buildServiceSecondaryInfo(BuildContext context) {
     return Expanded(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -68,7 +74,9 @@ class ServiceReviewWidget extends StatelessWidget {
           _buildListItemDetailText('02/07/2020', 'Data'),
           _buildListItemRatingText(4),
           Row(
-            children: <Widget>[_buildIconButton('star', () {})],
+            children: <Widget>[
+              _buildIconButton('star', () => showGenericModalSheet(context, modalScreen))
+            ],
           )
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/styles/text_styles.dart';
+
+import '../../../../core/shared/styles/text_styles.dart';
 
 class MainButton extends StatelessWidget {
   final void Function() onPress;
