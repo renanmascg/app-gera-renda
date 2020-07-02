@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/shared/styles/colors.dart';
 import '../categories/presentation/screens/01_categories_main_page/categories_main_page.dart';
@@ -28,15 +29,12 @@ class AppRoutes extends StatelessWidget {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         backgroundColor: Colors.white,
-        activeColor: kMainOrangeColor,
+        activeColor: kMainTextBoldColor,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.search)),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.queue_music),
-          ),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.home, size: 20 )),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.search, size: 20)),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.briefcase, size: 20)),
+          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.userCircle, size: 20)),
         ],
       ),
       tabBuilder: (ctx, index) {
