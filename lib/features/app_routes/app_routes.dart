@@ -9,6 +9,7 @@ import '../categories/presentation/screens/02_all_categories/all_categories_page
 import '../categories/presentation/screens/03_categorie_page/categorie_page.dart';
 import '../categories/presentation/screens/04_single_service_page/single_service_page.dart';
 import '../categories/presentation/screens/05_all_reviews/all_reviews_page.dart';
+import '../profile/presentation/01_main_profile_page/main_profile_page.dart';
 import '../search/presentation/screens/01_search_page/search_page.dart';
 import '../search/presentation/screens/02_search_found_page/search_found_page.dart';
 
@@ -23,7 +24,8 @@ class AppRoutes extends StatelessWidget {
     AllReviewsPage.id: (ctx) => AllReviewsPage(),
     SearchPage.id: (ctx) => SearchPage(),
     SearchFoundPage.id: (ctx) => SearchFoundPage(),
-    LastServiceCalledPage.id: (ctx) => LastServiceCalledPage()
+    LastServiceCalledPage.id: (ctx) => LastServiceCalledPage(),
+    MainProfilePage.id: (ctx) => MainProfilePage()
   };
 
   @override
@@ -60,6 +62,13 @@ class AppRoutes extends StatelessWidget {
               routes: routes,
               builder: (_) {
                 return LastServiceCalledPage();
+              },
+            );
+          case 3:
+           return CupertinoTabView(
+              routes: routes,
+              builder: (_) {
+                return MainProfilePage();
               },
             );
           default:
