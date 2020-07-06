@@ -30,52 +30,61 @@ class AppRoutes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        backgroundColor: Colors.white,
-        activeColor: kMainTextBoldColor,
-        items: [
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.home, size: 20 )),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.search, size: 20)),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.briefcase, size: 20)),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.userCircle, size: 20)),
-        ],
+    return WillPopScope(
+      onWillPop: () => Future<bool>.value(false),
+      child: Material(
+        child: CupertinoTabScaffold(
+          tabBar: CupertinoTabBar(
+            backgroundColor: Colors.white,
+            activeColor: kMainTextBoldColor,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.home, size: 20)),
+              BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.search, size: 20)),
+              BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.briefcase, size: 20)),
+              BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.userCircle, size: 20)),
+            ],
+          ),
+          backgroundColor: kMainBackground,
+          tabBuilder: (ctx, index) {
+            switch (index) {
+              case 0:
+                return CupertinoTabView(
+                  routes: routes,
+                  builder: (_) {
+                    return CategoriesMainPage();
+                  },
+                );
+              case 1:
+                return CupertinoTabView(
+                  routes: routes,
+                  builder: (_) {
+                    return SearchPage();
+                  },
+                );
+              case 2:
+                return CupertinoTabView(
+                  routes: routes,
+                  builder: (_) {
+                    return LastServiceCalledPage();
+                  },
+                );
+              case 3:
+                return CupertinoTabView(
+                  routes: routes,
+                  builder: (_) {
+                    return MainProfilePage();
+                  },
+                );
+              default:
+            }
+            return null;
+          },
+        ),
       ),
-      tabBuilder: (ctx, index) {
-        switch (index) {
-          case 0:
-            return CupertinoTabView(
-              routes: routes,
-              builder: (_) {
-                return CategoriesMainPage();
-              },
-            );
-          case 1:
-            return CupertinoTabView(
-              routes: routes,
-              builder: (_) {
-                return SearchPage();
-              },
-            );
-          case 2:
-            return CupertinoTabView(
-              routes: routes,
-              builder: (_) {
-                return LastServiceCalledPage();
-              },
-            );
-          case 3:
-           return CupertinoTabView(
-              routes: routes,
-              builder: (_) {
-                return MainProfilePage();
-              },
-            );
-          default:
-        }
-
-        return null;
-      },
     );
   }
 }

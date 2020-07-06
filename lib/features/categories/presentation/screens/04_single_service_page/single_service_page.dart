@@ -12,23 +12,21 @@ class SingleServicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: kMainBackground,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverMainHeader(title: Container()),
-            _buildHeaderServiceInfo(),
-            buildTextTitle('Descrição'),
-            _buildDescriptionText(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
-            buildTextTitle('Serviços'),
-            _buildServiceList(),
-            buildTextWithRedirect('Avaliações',
-                () => Navigator.pushNamed(context, AllReviewsPage.id)),
-            _buildReviewList()
-          ],
-        ),
+    return Container(
+      color: kMainBackground,
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverMainHeader(title: Container()),
+          _buildHeaderServiceInfo(),
+          buildTextTitle('Descrição'),
+          _buildDescriptionText(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
+          buildTextTitle('Serviços'),
+          _buildServiceList(),
+          buildTextWithRedirect('Avaliações',
+              () => Navigator.pushNamed(context, AllReviewsPage.id)),
+          _buildReviewList()
+        ],
       ),
     );
   }

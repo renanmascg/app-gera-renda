@@ -5,7 +5,6 @@ import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
 
-
 class AllCategoriesPage extends StatelessWidget {
   static final String id = 'all_categories';
 
@@ -30,20 +29,18 @@ class AllCategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: kMainBackground,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverMainHeader(
-              title: Text(
-                CATEGORIES,
-                style: kBoldTextStyle.copyWith(fontSize: 22),
-              ),
+    return Container(
+      color: kMainBackground,
+      child: CustomScrollView(
+        slivers: <Widget>[
+          SliverMainHeader(
+            title: Text(
+              CATEGORIES,
+              style: kBoldTextStyle.copyWith(fontSize: 22),
             ),
-            _buildCategoriesGrid()
-          ],
-        ),
+          ),
+          _buildCategoriesGrid()
+        ],
       ),
     );
   }

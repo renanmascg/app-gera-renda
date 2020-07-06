@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'features/app_routes/app_routes.dart';
 import 'features/login/presentation/screens/01_onboarding_page/onboarding_page.dart';
@@ -14,13 +15,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return MaterialApp(
       title: 'Flutter Demo',
       routes: {
         OnboardingPage.id: (ctx) => OnboardingPage(),
         CreateAccountPage.id: (ctx) => CreateAccountPage(),
         CreateAccountPassPage.id: (ctx) => CreateAccountPassPage(),
-        LoginPage.id: (ctx) =>  LoginPage(),
+        LoginPage.id: (ctx) => LoginPage(),
         AppRoutes.id: (ctx) => AppRoutes()
       },
       initialRoute: AppRoutes.id,

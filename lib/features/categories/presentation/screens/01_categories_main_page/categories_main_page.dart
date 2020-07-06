@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
@@ -21,21 +20,16 @@ class CategoriesMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: kMainBackground,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            _buildHeader(),
-            buildTextWithRedirect(CATEGORIES,
-                () => Navigator.pushNamed(context, AllCategoriesPage.id)),
-            _buildCategoriesGrid(),
-            buildTextWithRedirect(NEARBY_YOU,
-                () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
-            buildListOfServices(context)
-          ],
-        ),
-      ),
+    return CustomScrollView(
+      slivers: <Widget>[
+        _buildHeader(),
+        buildTextWithRedirect(CATEGORIES,
+            () => Navigator.pushNamed(context, AllCategoriesPage.id)),
+        _buildCategoriesGrid(),
+        buildTextWithRedirect(
+            NEARBY_YOU, () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
+        buildListOfServices(context)
+      ],
     );
   }
 

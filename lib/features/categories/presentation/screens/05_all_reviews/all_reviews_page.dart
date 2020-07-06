@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/widgets/review_item_widget.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
@@ -10,21 +9,16 @@ class AllReviewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: kMainBackground,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverMainHeader(
-              title: Text(
-                'Avaliações',
-                style: kBoldTextStyle.copyWith(fontSize: 22),
-              ),
-            ),
-            _buildReviewList()
-          ],
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverMainHeader(
+          title: Text(
+            'Avaliações',
+            style: kBoldTextStyle.copyWith(fontSize: 22),
+          ),
         ),
-      ),
+        _buildReviewList()
+      ],
     );
   }
 
