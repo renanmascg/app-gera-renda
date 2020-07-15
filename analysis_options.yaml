@@ -11,3 +11,4 @@ linter:
     constant_identifier_names: false
     prefer_const_declarations: false
     lowercase_with_underscores: false
+    prefer_collection_literals: false
