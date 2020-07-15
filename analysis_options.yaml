@@ -10,3 +10,4 @@ linter:
     prefer_relative_imports: true
     constant_identifier_names: false
     prefer_const_declarations: false
+    lowercase_with_underscores: false
