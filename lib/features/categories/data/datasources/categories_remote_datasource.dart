@@ -3,9 +3,12 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/custom_dio.dart';
 import '../models/categories_model.dart';
+import '../models/services_model.dart';
 
 abstract class CategoriesRemoteDatasource {
   Future<CategoriesModel> getAllCategories();
+  Future<ServicesModel> getAllNearMeServices(
+      {double lat, double long, double distance});
 }
 
 class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
@@ -19,6 +22,21 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
       final response = await customDio.dio.get('/categories');
 
       return CategoriesModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<ServicesModel> getAllNearMeServices({double lat, double long, double distance}) async {
+    try {
+      final response = await customDio.dio.post('/services/near-me', data: {
+        "lat": lat,
+        "long": long,
+        "distance": distance
+      });
+
+      return ServicesModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw ServerException();
     }

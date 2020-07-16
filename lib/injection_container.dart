@@ -1,4 +1,3 @@
-import 'package:flutter_gera_renda/features/categories/domain/services/get_user_location_service.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/network/custom_dio.dart';
@@ -6,6 +5,8 @@ import 'features/categories/data/datasources/categories_remote_datasource.dart';
 import 'features/categories/data/repositories/categories_repository_impl.dart';
 import 'features/categories/domain/repository/categories_repository.dart';
 import 'features/categories/domain/services/get_all_categories_service.dart';
+import 'features/categories/domain/services/get_near_services_service.dart';
+import 'features/categories/domain/services/get_user_location_service.dart';
 import 'features/categories/presentation/mobx/categories/categories_store.dart';
 
 final GetIt serviceLocator = GetIt.instance;
@@ -16,12 +17,17 @@ Future<void> init() async {
     () => CategoriesStore(
       getAllCategoriesService: serviceLocator(),
       getUserLocationService: serviceLocator(),
+      getNearServicesService: serviceLocator(),
     ),
   );
 
   // Services
   serviceLocator.registerLazySingleton(
       () => GetAllCategoriesService(repository: serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+      () => GetNearServicesService(repository: serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => GetUserLocationService());
 
   // Repositories
