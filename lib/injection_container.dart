@@ -1,3 +1,4 @@
+import 'package:flutter_gera_renda/features/categories/domain/services/get_user_location_service.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/network/custom_dio.dart';
@@ -12,11 +13,16 @@ final GetIt serviceLocator = GetIt.instance;
 Future<void> init() async {
   // Register MOBX
   serviceLocator.registerLazySingleton(
-      () => CategoriesStore(getAllCategoriesService: serviceLocator()));
+    () => CategoriesStore(
+      getAllCategoriesService: serviceLocator(),
+      getUserLocationService: serviceLocator(),
+    ),
+  );
 
   // Services
   serviceLocator.registerLazySingleton(
       () => GetAllCategoriesService(repository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserLocationService());
 
   // Repositories
   serviceLocator.registerLazySingleton<CategoriesRepository>(

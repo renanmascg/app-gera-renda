@@ -4,6 +4,7 @@ import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
 import '../../../../../core/shared/widgets/simple_widgets.dart';
+import '../../../../categories/data/models/categorie_model.dart';
 import '../02_search_found_page/search_found_page.dart';
 
 class SearchPage extends StatelessWidget {
@@ -98,7 +99,7 @@ class SearchPage extends StatelessWidget {
         mainAxisSpacing: 20,
         childAspectRatio: 0.8,
         children: categoriesList.map((cat) {
-          return GridButtonWidget(categorie: cat);
+          return GridButtonWidget(categorie: CategorieModel());
         }).toList(),
       ),
     );

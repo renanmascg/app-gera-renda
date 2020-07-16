@@ -10,9 +10,14 @@ import '../../../../../injection_container.dart';
 import '../../mobx/categories/categories_store.dart';
 import '../02_all_categories/all_categories_page.dart';
 
-class CategoriesMainPage extends StatelessWidget {
+class CategoriesMainPage extends StatefulWidget {
   static final String id = 'categories_main_page';
 
+  @override
+  _CategoriesMainPageState createState() => _CategoriesMainPageState();
+}
+
+class _CategoriesMainPageState extends State<CategoriesMainPage> {
   final CategoriesStore _store = serviceLocator<CategoriesStore>();
 
   final List<String> categoriesList = [
@@ -25,8 +30,13 @@ class CategoriesMainPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _store.fetchData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Observer(
       builder: (ctx) {
         if (_store.statusPage != StatusPage.NORMAL) {
