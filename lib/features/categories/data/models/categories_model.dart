@@ -1,4 +1,27 @@
 class CategoriesModel {
+  List<Categorie> categories;
+
+  CategoriesModel({this.categories});
+
+  CategoriesModel.fromJson(Map<String, dynamic> json) {
+    if (json['categories'] != null) {
+      categories =  List<Categorie>();
+      json['categories'].forEach((v) {
+        categories.add( Categorie.fromJson(v as Map<String, dynamic>));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  Map<String, dynamic>();
+    if (categories != null) {
+      data['categories'] = categories.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Categorie {
   String sId;
   String name;
   int iV;
@@ -6,16 +29,15 @@ class CategoriesModel {
   String imageUrl;
   String updatedAt;
 
-  CategoriesModel({
-    this.sId,
-    this.name,
-    this.iV,
-    this.createdAt,
-    this.imageUrl,
-    this.updatedAt,
-  });
+  Categorie(
+      {this.sId,
+      this.name,
+      this.iV,
+      this.createdAt,
+      this.imageUrl,
+      this.updatedAt});
 
-  CategoriesModel.fromJson(Map<String, dynamic> json) {
+  Categorie.fromJson(Map<String, dynamic> json) {
     sId = json['_id'] as String;
     name = json['name'] as String;
     iV = json['__v'] as int;
@@ -25,7 +47,7 @@ class CategoriesModel {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['_id'] = sId;
     data['name'] = name;
     data['__v'] = iV;

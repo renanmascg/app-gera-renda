@@ -1,0 +1,1 @@
+enum StatusPage { NORMAL, SEARCHING, ERROR }

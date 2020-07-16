@@ -4,10 +4,14 @@ import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
 import '../../../../../core/shared/widgets/simple_widgets.dart';
+import '../../../../../injection_container.dart';
+import '../../mobx/categories/categories_store.dart';
 import '../02_all_categories/all_categories_page.dart';
 
 class CategoriesMainPage extends StatelessWidget {
   static final String id = 'categories_main_page';
+
+  final CategoriesStore _store = serviceLocator<CategoriesStore>();
 
   final List<String> categoriesList = [
     'Mudanca',
@@ -20,6 +24,8 @@ class CategoriesMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    _store.fetchData();
     return CustomScrollView(
       slivers: <Widget>[
         _buildHeader(),

@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/custom_dio.dart';
 import '../models/categories_model.dart';
@@ -9,7 +11,7 @@ abstract class CategoriesRemoteDatasource {
 class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
   final CustomDio customDio;
 
-  CategorioesRemoteDatasourceImpl(this.customDio);
+  CategorioesRemoteDatasourceImpl({@required this.customDio});
 
   @override
   Future<CategoriesModel> getAllCategories() async {

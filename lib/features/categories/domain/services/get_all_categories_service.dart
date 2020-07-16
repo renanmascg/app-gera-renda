@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
@@ -9,7 +10,7 @@ class GetAllCategoriesService implements Service<CategoriesModel,NoParams> {
 
   final CategoriesRepository repository;
 
-  GetAllCategoriesService({this.repository});
+  GetAllCategoriesService({@required this.repository});
   
   @override
   Future<Either<Failure, CategoriesModel>> exec(NoParams params) async {

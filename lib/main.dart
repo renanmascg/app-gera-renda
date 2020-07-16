@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import './injection_container.dart' as injection_container;
 import 'features/app_routes/app_routes.dart';
 import 'features/login/presentation/screens/01_onboarding_page/onboarding_page.dart';
 import 'features/login/presentation/screens/02_login_page/login_page.dart';
 import 'features/login/presentation/screens/03_create_account/create_account_page.dart';
 import 'features/login/presentation/screens/04_create_account_pass/create_account_pass.dart';
 
-void main() {
+Future<void> main() async {
+  await injection_container.init();
   runApp(MyApp());
 }
 
