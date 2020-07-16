@@ -7,3 +7,5 @@ abstract class Failure {
 }
 
 class ServerFailure extends Failure {}
+
+class GeolocatorAccessFailure extends Failure {}
