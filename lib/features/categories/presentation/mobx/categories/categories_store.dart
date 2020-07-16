@@ -1,8 +1,9 @@
-import 'package:mobx/mobx.dart';
 import 'package:meta/meta.dart';
+import 'package:mobx/mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
 import '../../../../../core/services/Service.dart';
+import '../../../data/models/categorie_model.dart';
 import '../../../domain/services/get_all_categories_service.dart';
 
 part 'categories_store.g.dart';
@@ -23,7 +24,7 @@ abstract class _CategoriesStore with Store {
   StatusPage statusPage = StatusPage.NORMAL;
 
   @observable
-  ObservableList categories = ObservableList.of([]);
+  ObservableList<CategorieModel> categories = ObservableList.of([]);
 
   @action
   Future<void> fetchData() async {

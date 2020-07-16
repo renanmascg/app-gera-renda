@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../../core/network/status_page.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
@@ -24,18 +26,27 @@ class CategoriesMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     _store.fetchData();
-    return CustomScrollView(
-      slivers: <Widget>[
-        _buildHeader(),
-        buildTextWithRedirect(CATEGORIES,
-            () => Navigator.pushNamed(context, AllCategoriesPage.id)),
-        _buildCategoriesGrid(),
-        buildTextWithRedirect(
-            NEARBY_YOU, () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
-        buildListOfServices(context)
-      ],
+    return Observer(
+      builder: (ctx) {
+        if (_store.statusPage != StatusPage.NORMAL) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        return CustomScrollView(
+          slivers: <Widget>[
+            _buildHeader(),
+            buildTextWithRedirect(CATEGORIES,
+                () => Navigator.pushNamed(context, AllCategoriesPage.id)),
+            _buildCategoriesGrid(),
+            buildTextWithRedirect(NEARBY_YOU,
+                () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
+            buildListOfServices(context)
+          ],
+        );
+      },
     );
   }
 
@@ -70,7 +81,7 @@ class CategoriesMainPage extends StatelessWidget {
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
         childAspectRatio: 0.8,
-        children: categoriesList.map((cat) {
+        children: _store.categories.getRange(0, 6).map((cat) {
           return GridButtonWidget(categorie: cat);
         }).toList(),
       ),

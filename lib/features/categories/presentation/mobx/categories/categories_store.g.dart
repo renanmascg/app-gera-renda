@@ -27,13 +27,13 @@ mixin _$CategoriesStore on _CategoriesStore, Store {
   final _$categoriesAtom = Atom(name: '_CategoriesStore.categories');
 
   @override
-  ObservableList<dynamic> get categories {
+  ObservableList<CategorieModel> get categories {
     _$categoriesAtom.reportRead();
     return super.categories;
   }
 
   @override
-  set categories(ObservableList<dynamic> value) {
+  set categories(ObservableList<CategorieModel> value) {
     _$categoriesAtom.reportWrite(value, super.categories, () {
       super.categories = value;
     });

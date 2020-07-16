@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/categories/data/models/categorie_model.dart';
 import '../../../features/categories/presentation/screens/03_categorie_page/categorie_page.dart';
 import '../styles/text_styles.dart';
 
 class GridButtonWidget extends StatelessWidget {
-  final String categorie;
+  final CategorieModel categorie;
 
   const GridButtonWidget({this.categorie});
 
@@ -24,11 +25,17 @@ class GridButtonWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-                'assets/categories/${categorie.toLowerCase()}_icon.png'),
+            Expanded(
+              flex: 2,
+              child: Image.network(
+                categorie.imageUrl,
+                height: 60,
+              ),
+            ),
+            SizedBox(height: 10),
             Expanded(
               child: Text(
-                categorie,
+                categorie.name,
                 style: kGridTextStyle,
                 textAlign: TextAlign.center,
               ),
