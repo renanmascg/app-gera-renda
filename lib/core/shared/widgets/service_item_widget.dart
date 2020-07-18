@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/categories/data/models/service_model.dart';
 import '../styles/colors.dart';
 import '../styles/text_styles.dart';
 
 class ServiceItemWidget extends StatelessWidget {
   final void Function() onTap;
+  final ServiceModel service;
 
-  const ServiceItemWidget({@required this.onTap});
+  const ServiceItemWidget({
+    @required this.onTap,
+    @required this.service,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,9 @@ class ServiceItemWidget extends StatelessWidget {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(),
+                  CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          'https://www.logaster.com/blog/wp-content/uploads/2018/05/LogoMakr.png')),
                   SizedBox(width: 18),
                   _buildNameAndReviewsInfo()
                 ],
@@ -45,24 +52,35 @@ class ServiceItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'The Plumber Boys',
+            service.name,
             style: kBoldTextStyle.copyWith(fontSize: 14),
             textAlign: TextAlign.start,
           ),
-          Row(
-            children: <Widget>[
-              Image.asset('assets/star_icon.png'),
-              SizedBox(width: 5),
-              Text('3.8',
-                  style: kBoldTextStyle.copyWith(
-                      fontSize: 10, fontWeight: FontWeight.w500)),
-              SizedBox(width: 5),
-              Text('(805 reviews)',
-                  style: kSecondaryTextStyle.copyWith(fontSize: 10))
-            ],
-          )
+          _buildRatingStar()
         ],
       ),
+    );
+  }
+
+  Widget _buildRatingStar() {
+    if (service.qtdPessoasContato < 10) {
+      return Expanded(
+          child: Text(
+        'Novo!',
+        style: kBoldTextStyle.copyWith(fontSize: 12, color: Colors.yellow[600]),
+      ));
+    }
+
+    return Row(
+      children: <Widget>[
+        Image.asset('assets/star_icon.png'),
+        SizedBox(width: 5),
+        Text('3.8',
+            style: kBoldTextStyle.copyWith(
+                fontSize: 10, fontWeight: FontWeight.w500)),
+        SizedBox(width: 5),
+        Text('(805 reviews)', style: kSecondaryTextStyle.copyWith(fontSize: 10))
+      ],
     );
   }
 
@@ -72,7 +90,7 @@ class ServiceItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          _buildListItemDetailText('0.5 Km', 'Distancia'),
+          _buildListItemDetailText('${service.distance} Km', 'Distancia'),
           _buildListItemDetailText(
             'ABERTO',
             'Status',
