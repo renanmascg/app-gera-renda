@@ -4,34 +4,24 @@ import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
 import '../../../../../core/shared/widgets/simple_widgets.dart';
-import '../../../../categories/data/models/categorie_model.dart';
+import '../../../../../injection_container.dart';
+import '../../../../categories/presentation/mobx/categories/categories_store.dart';
 import '../02_search_found_page/search_found_page.dart';
 
 class SearchPage extends StatelessWidget {
   static final String id = 'search_page';
-
-  final List<String> categoriesList = [
-    'Mudanca',
-    'Casa',
-    'Eletrica',
-    'Pet',
-    'Beleza',
-    'Segurança',
-  ];
+  final CategoriesStore _store = serviceLocator<CategoriesStore>();
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: kMainBackground,
-      child: CustomScrollView(
-        slivers: <Widget>[
-          _buildAppBar(context),
-          buildTextTitle('Pesquisas Recentes'),
-          _buildRecentSearch(context),
-          buildTextTitle('Categorias'),
-          _buildCategoriesGrid()
-        ],
-      ),
+    return CustomScrollView(
+      slivers: <Widget>[
+        _buildAppBar(context),
+        buildTextTitle('Pesquisas Recentes'),
+        _buildRecentSearch(context),
+        buildTextTitle('Categorias'),
+        _buildCategoriesGrid()
+      ],
     );
   }
 
@@ -98,8 +88,8 @@ class SearchPage extends StatelessWidget {
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
         childAspectRatio: 0.8,
-        children: categoriesList.map((cat) {
-          return GridButtonWidget(categorie: CategorieModel());
+        children: _store.categories.map((cat) {
+          return GridButtonWidget(categorie: cat);
         }).toList(),
       ),
     );
