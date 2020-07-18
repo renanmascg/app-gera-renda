@@ -6,8 +6,10 @@ import 'features/categories/data/repositories/categories_repository_impl.dart';
 import 'features/categories/domain/repository/categories_repository.dart';
 import 'features/categories/domain/services/get_all_categories_service.dart';
 import 'features/categories/domain/services/get_near_services_service.dart';
+import 'features/categories/domain/services/get_services_by_category.dart';
 import 'features/categories/domain/services/get_user_location_service.dart';
 import 'features/categories/presentation/mobx/categories/categories_store.dart';
+import 'features/categories/presentation/mobx/single_categorie/single_categorie_store.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -21,6 +23,10 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerLazySingleton(() => SingleCategorieStore(
+      getUserLocationService: serviceLocator(),
+      getServicesByCategoryService: serviceLocator()));
+
   // Services
   serviceLocator.registerLazySingleton(
       () => GetAllCategoriesService(repository: serviceLocator()));
@@ -29,6 +35,9 @@ Future<void> init() async {
       () => GetNearServicesService(repository: serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetUserLocationService());
+
+  serviceLocator.registerLazySingleton(
+      () => GetServicesByCategoryService(repository: serviceLocator()));
 
   // Repositories
   serviceLocator.registerLazySingleton<CategoriesRepository>(

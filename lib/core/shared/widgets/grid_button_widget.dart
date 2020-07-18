@@ -13,7 +13,11 @@ class GridButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.all(0),
-      onPressed: () => Navigator.pushNamed(context, CategoriePage.id),
+      onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoriePage(category: categorie),
+          )),
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(

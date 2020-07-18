@@ -52,7 +52,7 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
         "lat": lat,
         "long": long,
         "distance": distance,
-        "categorieID": categoryId,
+        "categorieId": categoryId,
       });
 
       return ServicesModel.fromJson(response.data as Map<String, dynamic>);

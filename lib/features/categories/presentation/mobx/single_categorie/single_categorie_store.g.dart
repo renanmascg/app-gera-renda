@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'categories_store.dart';
+part of 'single_categorie_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'categories_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$CategoriesStore on _CategoriesStore, Store {
-  final _$statusPageAtom = Atom(name: '_CategoriesStore.statusPage');
+mixin _$SingleCategorieStore on _SingleCategorieStore, Store {
+  final _$statusPageAtom = Atom(name: '_SingleCategorieStore.statusPage');
 
   @override
   StatusPage get statusPage {
@@ -24,22 +24,7 @@ mixin _$CategoriesStore on _CategoriesStore, Store {
     });
   }
 
-  final _$categoriesAtom = Atom(name: '_CategoriesStore.categories');
-
-  @override
-  ObservableList<CategorieModel> get categories {
-    _$categoriesAtom.reportRead();
-    return super.categories;
-  }
-
-  @override
-  set categories(ObservableList<CategorieModel> value) {
-    _$categoriesAtom.reportWrite(value, super.categories, () {
-      super.categories = value;
-    });
-  }
-
-  final _$servicesAtom = Atom(name: '_CategoriesStore.services');
+  final _$servicesAtom = Atom(name: '_SingleCategorieStore.services');
 
   @override
   ObservableList<ServiceModel> get services {
@@ -54,7 +39,7 @@ mixin _$CategoriesStore on _CategoriesStore, Store {
     });
   }
 
-  final _$fetchDataAsyncAction = AsyncAction('_CategoriesStore.fetchData');
+  final _$fetchDataAsyncAction = AsyncAction('_SingleCategorieStore.fetchData');
 
   @override
   Future<void> fetchData() {
@@ -65,7 +50,6 @@ mixin _$CategoriesStore on _CategoriesStore, Store {
   String toString() {
     return '''
 statusPage: ${statusPage},
-categories: ${categories},
 services: ${services}
     ''';
   }
