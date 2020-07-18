@@ -4,28 +4,14 @@ import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
+import '../../../../../injection_container.dart';
+import '../../../data/models/categorie_model.dart';
+import '../../mobx/categories/categories_store.dart';
 
 class AllCategoriesPage extends StatelessWidget {
   static final String id = 'all_categories';
 
-  final List<String> categoriesList = [
-    'Mudanca',
-    'Casa',
-    'Eletrica',
-    'Pet',
-    'Beleza',
-    'Segurança',
-    'Fechadura',
-    'Eventos',
-    'Beleza',
-    'Segurança',
-    'Fechadura',
-    'Eventos',
-    'Beleza',
-    'Segurança',
-    'Fechadura',
-    'Eventos',
-  ];
+  final CategoriesStore _store = serviceLocator<CategoriesStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +35,11 @@ class AllCategoriesPage extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.only(right: 20, left: 20, top: 24),
       sliver: SliverGrid.count(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
-        childAspectRatio: 1.5,
-        children: categoriesList.map((cat) {
+        childAspectRatio: 0.9,
+        children: _store.categories.map((cat) {
           return _buildGridItem(cat);
         }).toList(),
       ),
@@ -61,7 +47,7 @@ class AllCategoriesPage extends StatelessWidget {
   }
 }
 
-Widget _buildGridItem(String categorie) {
+Widget _buildGridItem(CategorieModel categorie) {
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -69,32 +55,25 @@ Widget _buildGridItem(String categorie) {
       borderRadius: BorderRadius.circular(6),
       boxShadow: [kMainBoxShadow],
     ),
-    child: Row(
+    child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          'assets/categories/${categorie.toLowerCase()}_icon.png',
+        Image.network(
+          categorie.imageUrl,
           width: 55,
           height: 55,
         ),
         SizedBox(
-          width: 9,
+          height: 10,
         ),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                categorie,
-                style: kGridTextStyle,
-              ),
-              Text(
-                '230 Perto de você',
-                style: kSecondaryGridTextStyle,
-              )
-            ],
+          child: Center(
+            child: Text(
+              categorie.name,
+              style: kGridTextStyle,
+              textAlign: TextAlign.center,
+            ),
           ),
         )
       ],

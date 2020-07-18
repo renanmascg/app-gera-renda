@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/categories/data/models/service_model.dart';
 import '../../../features/categories/presentation/screens/04_single_service_page/single_service_page.dart';
 import '../styles/text_styles.dart';
 import '../texts/categories_main_text.dart';
@@ -33,7 +34,7 @@ Widget buildTextTitle(String text) {
 }
 
 
-Widget buildListOfServices(BuildContext context) {
+Widget buildListOfServices(BuildContext context, List<ServiceModel> services) {
     return SliverPadding(
       padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
       sliver: SliverList(
@@ -41,9 +42,10 @@ Widget buildListOfServices(BuildContext context) {
           (ctx, index) {
             return ServiceItemWidget(
               onTap: () => Navigator.pushNamed(context, SingleServicePage.id),
+              service: services[index],
             );
           },
-          childCount: 10,
+          childCount: services.length,
         ),
       ),
     );

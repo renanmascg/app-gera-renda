@@ -53,7 +53,7 @@ class _CategoriesMainPageState extends State<CategoriesMainPage> {
             _buildCategoriesGrid(),
             buildTextWithRedirect(NEARBY_YOU,
                 () => print('TODOS ESTABELECIMENTOS PERTO DE VOCÊ')),
-            buildListOfServices(context)
+            buildListOfServices(context, _store.services)
           ],
         );
       },
