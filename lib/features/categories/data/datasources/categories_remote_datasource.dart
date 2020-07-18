@@ -7,8 +7,12 @@ import '../models/services_model.dart';
 
 abstract class CategoriesRemoteDatasource {
   Future<CategoriesModel> getAllCategories();
+
   Future<ServicesModel> getAllNearMeServices(
       {double lat, double long, double distance});
+
+  Future<ServicesModel> getServicesByCategory(
+      {double lat, double long, double distance, String categoryId});
 }
 
 class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
@@ -28,12 +32,27 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
   }
 
   @override
-  Future<ServicesModel> getAllNearMeServices({double lat, double long, double distance}) async {
+  Future<ServicesModel> getAllNearMeServices(
+      {double lat, double long, double distance}) async {
     try {
-      final response = await customDio.dio.post('/services/near-me', data: {
+      final response = await customDio.dio.post('/services/near-me',
+          data: {"lat": lat, "long": long, "distance": distance});
+
+      return ServicesModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<ServicesModel> getServicesByCategory(
+      {double lat, double long, double distance, String categoryId}) async {
+    try {
+      final response = await customDio.dio.post('/services/categorie-service', data: {
         "lat": lat,
         "long": long,
-        "distance": distance
+        "distance": distance,
+        "categorieID": categoryId,
       });
 
       return ServicesModel.fromJson(response.data as Map<String, dynamic>);

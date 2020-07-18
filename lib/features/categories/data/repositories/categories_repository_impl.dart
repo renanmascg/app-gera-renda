@@ -39,4 +39,21 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ServicesModel>> getServicesByCategory(
+      {double lat, double long, double distance, String categoryId}) async {
+    try {
+      final categoryServices = await remoteDatasource.getServicesByCategory(
+        lat: lat,
+        long: long,
+        distance: distance,
+        categoryId: categoryId
+      );
+
+      return Right(categoryServices);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
 }
