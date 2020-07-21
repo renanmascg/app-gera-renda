@@ -29,9 +29,7 @@ class ServiceItemWidget extends StatelessWidget {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://www.logaster.com/blog/wp-content/uploads/2018/05/LogoMakr.png')),
+                  CircleAvatar(backgroundImage: NetworkImage(service.logoUrl)),
                   SizedBox(width: 18),
                   _buildNameAndReviewsInfo()
                 ],
@@ -92,24 +90,14 @@ class ServiceItemWidget extends StatelessWidget {
         children: <Widget>[
           _buildListItemDetailText('${service.distance} Km', 'Distancia'),
           _buildListItemDetailText(
-            'ABERTO',
+            service.isOpen ? 'ABERTO' : 'FECHADO',
             'Status',
-            color: kMainGreenColor,
+            color: service.isOpen ? kMainGreenColor: kMainRedColor,
           ),
-          Row(
-            children: <Widget>[
-              Image.asset(
-                'assets/categories/casa_icon.png',
-                width: 30,
-                height: 30,
-              ),
-              const SizedBox(width: 5),
-              Image.asset(
-                'assets/categories/eletrica_icon.png',
-                width: 30,
-                height: 30,
-              ),
-            ],
+          Image.network(
+            service.categorieUrl,
+            width: 30,
+            height: 30,
           )
         ],
       ),
