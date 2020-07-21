@@ -4,7 +4,6 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
 import '../../../../../core/services/Service.dart';
-import '../../../data/models/categorie_model.dart';
 import '../../../data/models/service_model.dart';
 import '../../../domain/services/get_services_by_category.dart';
 import '../../../domain/services/get_user_location_service.dart';
