@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/network/status_page.dart';
 import '../../../../../core/shared/styles/colors.dart';
@@ -77,9 +79,18 @@ class _SingleServicePageState extends State<SingleServicePage> {
               style: kBoldTextStyle,
             ),
             SizedBox(height: 5),
-            Row(
-              children: <Widget>[_buildWorkReviewItems(), _buildContactInfo()],
-            )
+            _buildWorkReviewItems(),
+            SizedBox(height: 10),
+            _buildIconButton(
+                FontAwesomeIcons.phoneAlt,
+                '+55 ${_store.serviceFullInfo.telefone}',
+                () =>
+                    openExternal('tel:+55 ${_store.serviceFullInfo.telefone}')),
+            _buildIconButton(
+                FontAwesomeIcons.mapMarkedAlt,
+                _store.serviceFullInfo.endereco,
+                () => openExternal(
+                    'https://www.google.com/maps/search/?api=1&query=${_store.serviceFullInfo.location.coordinates[1]},${_store.serviceFullInfo.location.coordinates[0]}'))
           ],
         ),
       ),
@@ -87,18 +98,15 @@ class _SingleServicePageState extends State<SingleServicePage> {
   }
 
   Widget _buildWorkReviewItems() {
-    return Expanded(
-      flex: 2,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _buildListItemDetailText('124', 'TRABALHOS'),
-          SizedBox(width: 10),
-          _buildListItemDetailText('300', 'AVALIAÇÕES'),
-          SizedBox(width: 10),
-          _buildStarRatingIcon('RATING', '3.8')
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        _buildListItemDetailText('124', 'TRABALHOS'),
+        SizedBox(width: 10),
+        _buildListItemDetailText('300', 'AVALIAÇÕES'),
+        SizedBox(width: 10),
+        _buildStarRatingIcon('RATING', '3.8')
+      ],
     );
   }
 
@@ -124,28 +132,31 @@ class _SingleServicePageState extends State<SingleServicePage> {
     );
   }
 
-  Widget _buildContactInfo() {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _buildIconButton('phone', () {}),
-          SizedBox(width: 15),
-          _buildIconButton('message-circle', () {})
-        ],
-      ),
-    );
+  Future<void> openExternal(String scheme) async {
+    print(scheme);
+    if (await canLaunch(scheme)) {
+      await launch(scheme);
+    } else {
+      print('Could not launch $scheme');
+    }
   }
 
-  Widget _buildIconButton(String text, void Function() onTap) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: CircleAvatar(
-          radius: 25,
-          backgroundColor: kBackgroundIconColor,
-          child: Image.asset('assets/service_page/$text.png'),
+  Widget _buildIconButton(
+      IconData iconData, String title, void Function() onTap) {
+    return ListTile(
+      onTap: onTap,
+      contentPadding: EdgeInsets.all(0),
+      title: Text(
+        title,
+        style: kMainTextSemiBold.copyWith(fontSize: 14),
+      ),
+      leading: CircleAvatar(
+        radius: 20,
+        backgroundColor: kBackgroundIconColor,
+        child: Icon(
+          iconData,
+          color: kMainGreenColor,
+          size: 20,
         ),
       ),
     );

@@ -1,8 +1,10 @@
 import 'formas_pagamento_model.dart';
 import 'horario_funcionamento_model.dart';
+import 'location_model.dart';
 import 'provided_services_model.dart';
 
 class ServiceFullInfo {
+  LocationModel location;
   int qtdPessoasContato;
   num reviewScore;
   String sId;
@@ -22,7 +24,8 @@ class ServiceFullInfo {
   String categorieUrl;
 
   ServiceFullInfo(
-      {this.qtdPessoasContato,
+      {this.location,
+      this.qtdPessoasContato,
       this.reviewScore,
       this.sId,
       this.name,
@@ -41,6 +44,9 @@ class ServiceFullInfo {
       this.categorieUrl});
 
   ServiceFullInfo.fromJson(Map<String, dynamic> json) {
+    location = json['location'] != null
+        ? LocationModel.fromJson(json['location'] as Map<String, dynamic>)
+        : null;
     qtdPessoasContato = json['qtdPessoasContato'] as int;
     reviewScore = json['reviewScore'] as num;
     sId = json['_id'] as String;
@@ -69,33 +75,5 @@ class ServiceFullInfo {
         : null;
     isOpen = json['isOpen'] as bool;
     categorieUrl = json['categorieUrl'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['qtdPessoasContato'] = qtdPessoasContato;
-    data['reviewScore'] = reviewScore;
-    data['_id'] = sId;
-    data['name'] = name;
-    if (services != null) {
-      data['services'] = services.map((v) => v.toJson()).toList();
-    }
-    data['endereco'] = endereco;
-    data['telefone'] = telefone;
-    if (formasPagamento != null) {
-      data['formasPagamento'] = formasPagamento.toJson();
-    }
-    data['descricao'] = descricao;
-    data['createdAt'] = createdAt;
-    data['updatedAt'] = updatedAt;
-    data['__v'] = iV;
-    data['logoUrl'] = logoUrl;
-    data['distance'] = distance;
-    if (horarioFuncionamento != null) {
-      data['horarioFuncionamento'] = horarioFuncionamento.toJson();
-    }
-    data['isOpen'] = isOpen;
-    data['categorieUrl'] = categorieUrl;
-    return data;
   }
 }
