@@ -63,7 +63,6 @@ flutter:
   assets:
     - assets/
     - assets/login/
-    - assets/categories/
     - assets/service_page/
 
   # An image asset can refer to one or more resolution-specific "variants", see

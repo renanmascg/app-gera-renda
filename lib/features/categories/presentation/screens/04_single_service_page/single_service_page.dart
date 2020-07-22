@@ -1,33 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../../core/network/status_page.dart';
 import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
-import '../../../../../core/shared/widgets/review_item_widget.dart';
 import '../../../../../core/shared/widgets/simple_widgets.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
+import '../../../../../injection_container.dart';
+import '../../../data/models/service_full_info/day_model.dart';
+import '../../mobx/single_service/single_service_store.dart';
 import '../05_all_reviews/all_reviews_page.dart';
 
-class SingleServicePage extends StatelessWidget {
+class SingleServicePage extends StatefulWidget {
   static final String id = 'single_service';
+
+  final String serviceId;
+
+  const SingleServicePage({this.serviceId});
+
+  @override
+  _SingleServicePageState createState() => _SingleServicePageState();
+}
+
+class _SingleServicePageState extends State<SingleServicePage> {
+  final SingleServiceStore _store = serviceLocator<SingleServiceStore>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _store.fetchData(super.widget.serviceId);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: kMainBackground,
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SliverMainHeader(title: Container()),
-          _buildHeaderServiceInfo(),
-          buildTextTitle('Descrição'),
-          _buildDescriptionText(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '),
-          buildTextTitle('Serviços'),
-          _buildServiceList(),
-          buildTextWithRedirect('Avaliações',
-              () => Navigator.pushNamed(context, AllReviewsPage.id)),
-          _buildReviewList()
-        ],
-      ),
+    return Observer(
+      builder: (ctx) {
+        if (_store.statusPage != StatusPage.NORMAL) {
+          return Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        return Container(
+          color: kMainBackground,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverMainHeader(title: Container()),
+              _buildHeaderServiceInfo(),
+              buildTextTitle('Descrição'),
+              _buildDescriptionText(_store.serviceFullInfo.descricao),
+              buildExpandedTitle(
+                'Horário de Funcionamento',
+                _buildOpeningHourInfo(),
+              ),
+              buildTextTitle('Serviços'),
+              _buildServiceList(),
+              buildTextWithRedirect('Avaliações',
+                  () => Navigator.pushNamed(context, AllReviewsPage.id)),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -39,7 +73,7 @@ class SingleServicePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              'Loja do Renan',
+              _store.serviceFullInfo.name,
               style: kBoldTextStyle,
             ),
             SizedBox(height: 5),
@@ -152,11 +186,54 @@ class SingleServicePage extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildOpeningHourInfo() {
+    return [
+      _buildHorarioFuncionamentoElement(
+          'Segunda', _store.serviceFullInfo.horarioFuncionamento.seg),
+      _buildHorarioFuncionamentoElement(
+          'Terça', _store.serviceFullInfo.horarioFuncionamento.ter),
+      _buildHorarioFuncionamentoElement(
+          'Quarta', _store.serviceFullInfo.horarioFuncionamento.qua),
+      _buildHorarioFuncionamentoElement(
+          'Quinta', _store.serviceFullInfo.horarioFuncionamento.qui),
+      _buildHorarioFuncionamentoElement(
+          'Sexta', _store.serviceFullInfo.horarioFuncionamento.sex),
+      _buildHorarioFuncionamentoElement(
+          'Sabado', _store.serviceFullInfo.horarioFuncionamento.sab),
+      _buildHorarioFuncionamentoElement(
+          'Domingo', _store.serviceFullInfo.horarioFuncionamento.dom),
+    ];
+  }
+
+  Widget _buildHorarioFuncionamentoElement(String text, Day dia) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          text,
+          style: kMainTextRegular,
+        ),
+        Text(
+          dia.isOpen ? '${dia.start}h00 - ${dia.end}h00' : 'Fechado',
+          style: kMainTextRegular,
+        )
+      ],
+    );
+  }
+
   Widget _buildServiceList() {
     return SliverList(
-      delegate: SliverChildBuilderDelegate((ctx, index) {
-        return _listItem('', '', 1500.0);
-      }, childCount: 5),
+      delegate: SliverChildBuilderDelegate(
+        (ctx, index) {
+          final servItem = _store.serviceFullInfo.services[index];
+          return _listItem(
+            servItem.name,
+            servItem.description,
+            servItem.value,
+          );
+        },
+        childCount: _store.serviceFullInfo.services.length,
+      ),
     );
   }
 
@@ -172,11 +249,11 @@ class SingleServicePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Broken Pipe',
+                  title,
                   style: kMainTextRegular,
                 ),
                 Text(
-                  'Broken internal pipes within the wall Broken internal pipes within the wall',
+                  description,
                   style: kMainTextSubtitleRegular,
                 ),
               ],
@@ -191,17 +268,6 @@ class SingleServicePage extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget _buildReviewList() {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate((ctx, index) {
-          return ReviewItemWidget();
-        }, childCount: 3),
       ),
     );
   }

@@ -105,7 +105,14 @@ class _CategoriePageState extends State<CategoriePage> {
       child: ListView(
         children: _store.services.map((service) {
           return ServiceItemWidget(
-            onTap: () => Navigator.pushNamed(context, SingleServicePage.id),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SingleServicePage(
+                  serviceId: service.sId,
+                ),
+              ),
+            ),
             service: service,
           );
         }).toList(),

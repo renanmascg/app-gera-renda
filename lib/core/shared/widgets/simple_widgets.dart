@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../features/categories/data/models/service_model.dart';
 import '../../../features/categories/presentation/screens/04_single_service_page/single_service_page.dart';
+import '../styles/colors.dart';
 import '../styles/text_styles.dart';
 import '../texts/categories_main_text.dart';
 import 'service_item_widget.dart';
@@ -33,20 +34,47 @@ Widget buildTextTitle(String text) {
   );
 }
 
-
-Widget buildListOfServices(BuildContext context, List<ServiceModel> services) {
-    return SliverPadding(
-      padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (ctx, index) {
-            return ServiceItemWidget(
-              onTap: () => Navigator.pushNamed(context, SingleServicePage.id),
-              service: services[index],
-            );
-          },
-          childCount: services.length,
+Widget buildExpandedTitle(String title, List<Widget> expanded) {
+  return SliverPadding(
+    padding: EdgeInsets.symmetric(horizontal: 20),
+    sliver: SliverToBoxAdapter(
+      child: ListTileTheme(
+        contentPadding: EdgeInsets.all(0),
+        selectedColor: kMainTextBoldColor,
+        child: ExpansionTile(
+          backgroundColor: Colors.transparent,
+          
+          title: Text(
+            'Horario de Funcionamento',
+            style: kBoldTextStyle.copyWith(fontSize: 18),
+          ),
+          children: [...expanded, SizedBox(height: 20)],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+Widget buildListOfServices(BuildContext context, List<ServiceModel> services) {
+  return SliverPadding(
+    padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+    sliver: SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (ctx, index) {
+          return ServiceItemWidget(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SingleServicePage(
+                  serviceId: services[index].sId,
+                ),
+              ),
+            ),
+            service: services[index],
+          );
+        },
+        childCount: services.length,
+      ),
+    ),
+  );
+}
