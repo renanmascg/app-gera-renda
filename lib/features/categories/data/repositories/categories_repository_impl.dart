@@ -6,6 +6,7 @@ import '../../../../core/error/failures.dart';
 import '../../domain/repository/categories_repository.dart';
 import '../datasources/categories_remote_datasource.dart';
 import '../models/categories_model.dart';
+import '../models/service_full_info/service_full_info_model.dart';
 import '../models/services_model.dart';
 
 class CategoriesRepositoryImpl implements CategoriesRepository {
@@ -45,13 +46,22 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
       {double lat, double long, double distance, String categoryId}) async {
     try {
       final categoryServices = await remoteDatasource.getServicesByCategory(
-        lat: lat,
-        long: long,
-        distance: distance,
-        categoryId: categoryId
-      );
+          lat: lat, long: long, distance: distance, categoryId: categoryId);
 
       return Right(categoryServices);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, ServiceFullInfo>> getServiceFullInfo(
+      {String id, double lat, double long}) async {
+    try {
+      final serviceFullInfo = await remoteDatasource.getServiceFullInfo(
+          id: id, lat: lat, long: long);
+
+      return Right(serviceFullInfo);
     } catch (e) {
       return Left(ServerFailure());
     }

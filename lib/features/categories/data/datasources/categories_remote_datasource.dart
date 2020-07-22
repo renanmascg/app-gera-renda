@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/custom_dio.dart';
 import '../models/categories_model.dart';
+import '../models/service_full_info/service_full_info_model.dart';
 import '../models/services_model.dart';
 
 abstract class CategoriesRemoteDatasource {
@@ -13,6 +14,9 @@ abstract class CategoriesRemoteDatasource {
 
   Future<ServicesModel> getServicesByCategory(
       {double lat, double long, double distance, String categoryId});
+
+  Future<ServiceFullInfo> getServiceFullInfo(
+      {String id, double lat, double long});
 }
 
 class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
@@ -48,7 +52,8 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
   Future<ServicesModel> getServicesByCategory(
       {double lat, double long, double distance, String categoryId}) async {
     try {
-      final response = await customDio.dio.post('/services/categorie-service', data: {
+      final response =
+          await customDio.dio.post('/services/categorie-service', data: {
         "lat": lat,
         "long": long,
         "distance": distance,
@@ -56,6 +61,19 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
       });
 
       return ServicesModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<ServiceFullInfo> getServiceFullInfo(
+      {String id, double lat, double long}) async {
+    try {
+      final response = await customDio.dio
+          .post('/services/single', data: {"id": id, "lat": lat, "long": long});
+
+      return ServiceFullInfo.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw ServerException();
     }

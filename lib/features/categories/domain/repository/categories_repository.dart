@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../data/models/categories_model.dart';
+import '../../data/models/service_full_info/service_full_info_model.dart';
 import '../../data/models/services_model.dart';
 
 abstract class CategoriesRepository {
@@ -10,5 +11,6 @@ abstract class CategoriesRepository {
       {double lat, double long, double distance});
   Future<Either<Failure, ServicesModel>> getServicesByCategory(
       {double lat, double long, double distance, String categoryId});
-  
+  Future<Either<Failure, ServiceFullInfo>> getServiceFullInfo(
+      {String id, double lat, double long});
 }
