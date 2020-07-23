@@ -1,5 +1,5 @@
 class ServiceModel {
-  int qtdPessoasContato;
+  int qtdPessoasReview;
   num reviewScore;
   String sId;
   String name;
@@ -15,7 +15,7 @@ class ServiceModel {
   String categorieUrl;
 
   ServiceModel({
-    this.qtdPessoasContato,
+    this.qtdPessoasReview,
     this.reviewScore,
     this.sId,
     this.name,
@@ -32,7 +32,7 @@ class ServiceModel {
   });
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
-    qtdPessoasContato = json['qtdPessoasContato'] as int;
+    qtdPessoasReview = json['qtdPessoasReview'] as int;
     reviewScore = json['reviewScore'] as num;
     sId = json['_id'] as String;
     name = json['name'] as String;
@@ -46,24 +46,5 @@ class ServiceModel {
     distance = json['distance'] as String;
     isOpen = json['isOpen'] as bool;
     categorieUrl = json['categorieUrl'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['qtdPessoasContato'] = qtdPessoasContato;
-    data['reviewScore'] = reviewScore;
-    data['_id'] = sId;
-    data['name'] = name;
-    data['endereco'] = endereco;
-    data['telefone'] = telefone;
-    data['descricao'] = descricao;
-    data['createdAt'] = createdAt;
-    data['updatedAt'] = updatedAt;
-    data['__v'] = iV;
-    data['logoUrl'] = logoUrl;
-    data['distance'] = distance;
-    data['isOpen'] = isOpen;
-    data['categorieUrl'] = categorieUrl;
-    return data;
   }
 }

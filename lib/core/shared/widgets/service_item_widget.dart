@@ -61,7 +61,7 @@ class ServiceItemWidget extends StatelessWidget {
   }
 
   Widget _buildRatingStar() {
-    if (service.qtdPessoasContato < 10) {
+    if (service.qtdPessoasReview < 10) {
       return Expanded(
           child: Text(
         'Novo!',

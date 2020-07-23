@@ -13,12 +13,4 @@ class ServicesModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (services != null) {
-      data['services'] = services.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }

@@ -5,7 +5,7 @@ import 'provided_services_model.dart';
 
 class ServiceFullInfo {
   LocationModel location;
-  int qtdPessoasContato;
+  int qtdPessoasReview;
   num reviewScore;
   String sId;
   String name;
@@ -25,7 +25,7 @@ class ServiceFullInfo {
 
   ServiceFullInfo(
       {this.location,
-      this.qtdPessoasContato,
+      this.qtdPessoasReview,
       this.reviewScore,
       this.sId,
       this.name,
@@ -47,7 +47,7 @@ class ServiceFullInfo {
     location = json['location'] != null
         ? LocationModel.fromJson(json['location'] as Map<String, dynamic>)
         : null;
-    qtdPessoasContato = json['qtdPessoasContato'] as int;
+    qtdPessoasReview = json['qtdPessoasReview'] as int;
     reviewScore = json['reviewScore'] as num;
     sId = json['_id'] as String;
     name = json['name'] as String;
