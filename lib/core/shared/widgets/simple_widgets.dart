@@ -43,9 +43,8 @@ Widget buildExpandedTitle(String title, List<Widget> expanded) {
         selectedColor: kMainTextBoldColor,
         child: ExpansionTile(
           backgroundColor: Colors.transparent,
-          
           title: Text(
-            'Horario de Funcionamento',
+            title,
             style: kBoldTextStyle.copyWith(fontSize: 18),
           ),
           children: [...expanded, SizedBox(height: 20)],

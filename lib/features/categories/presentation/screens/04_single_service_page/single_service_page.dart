@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/core/shared/widgets/payment_methods_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -56,6 +57,14 @@ class _SingleServicePageState extends State<SingleServicePage> {
                 'Horário de Funcionamento',
                 _buildOpeningHourInfo(),
               ),
+              buildExpandedTitle(
+                'Formas de Pagamento',
+                [
+                  PaymentMethodsWidget(
+                    formasPagamento: _store.serviceFullInfo.formasPagamento,
+                  )
+                ],
+              ),
               buildTextTitle('Serviços'),
               _buildServiceList(),
               buildTextWithRedirect('Avaliações',
@@ -83,7 +92,7 @@ class _SingleServicePageState extends State<SingleServicePage> {
             SizedBox(height: 10),
             _buildIconButton(
                 FontAwesomeIcons.phoneAlt,
-                '+55 ${_store.serviceFullInfo.telefone}',
+                _store.serviceFullInfo.telefone,
                 () =>
                     openExternal('tel:+55 ${_store.serviceFullInfo.telefone}')),
             _buildIconButton(
@@ -101,8 +110,6 @@ class _SingleServicePageState extends State<SingleServicePage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        _buildListItemDetailText('124', 'TRABALHOS'),
-        SizedBox(width: 10),
         _buildListItemDetailText('300', 'AVALIAÇÕES'),
         SizedBox(width: 10),
         _buildStarRatingIcon('RATING', '3.8')
