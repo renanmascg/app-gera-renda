@@ -1,16 +1,17 @@
+import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomSharedPreferences {
-  SharedPreferences _preferences;
+  final SharedPreferences sharedPreferences;
+
+  CustomSharedPreferences({@required this.sharedPreferences});
 
   Future<void> savePreferenceString(String key, String value) async {
-    _preferences = await SharedPreferences.getInstance();
-    await _preferences.setString(key, value);
+    await sharedPreferences.setString(key, value);
   }
 
   Future<String> getPreferenceString(String key) async {
-    _preferences = await SharedPreferences.getInstance();
-    final pref = _preferences.getString(key);
+    final pref = sharedPreferences.getString(key);
     return pref ?? '';
   }
 }

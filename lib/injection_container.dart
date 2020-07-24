@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/custom_dio.dart';
+import 'core/shared/shared_preferences/shared_preferences.dart';
 import 'features/categories/data/datasources/categories_remote_datasource.dart';
 import 'features/categories/data/repositories/categories_repository_impl.dart';
 import 'features/categories/domain/repository/categories_repository.dart';
@@ -12,10 +14,27 @@ import 'features/categories/domain/services/get_user_location_service.dart';
 import 'features/categories/presentation/mobx/categories/categories_store.dart';
 import 'features/categories/presentation/mobx/single_categorie/single_categorie_store.dart';
 import 'features/categories/presentation/mobx/single_service/single_service_store.dart';
+import 'features/login/data/datasources/login_local_datasource.dart';
+import 'features/login/data/datasources/login_remote_datasource.dart';
+import 'features/login/data/repositories/login_repository_impl.dart';
+import 'features/login/domain/repository/login_repository.dart';
+import 'features/login/domain/services/signin_user_service.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
 Future<void> init() async {
+  categoryInjectionInit();
+
+  loginInjectionInit();
+
+  // Core
+  final sharedPreferences = await SharedPreferences.getInstance();
+  serviceLocator.registerLazySingleton(() => CustomDio());
+  serviceLocator.registerSingleton(
+      () => CustomSharedPreferences(sharedPreferences: sharedPreferences));
+}
+
+void categoryInjectionInit() {
   // Register MOBX
   serviceLocator.registerLazySingleton(
     () => CategoriesStore(
@@ -57,7 +76,26 @@ Future<void> init() async {
   // Datasources
   serviceLocator.registerLazySingleton<CategoriesRemoteDatasource>(
       () => CategorioesRemoteDatasourceImpl(customDio: serviceLocator()));
+}
 
-  // Core
-  serviceLocator.registerLazySingleton(() => CustomDio());
+void loginInjectionInit() {
+  // Init Mobx
+
+  // Init Services
+  serviceLocator.registerLazySingleton(
+      () => SigninUserService(loginRepository: serviceLocator()));
+
+  // Repositories
+  serviceLocator.registerLazySingleton<LoginRepository>(
+    () => LoginRepositoryImpl(
+      loginLocalDatasource: serviceLocator(),
+      loginRemoteDatasource: serviceLocator(),
+    ),
+  );
+  // Datasources
+  serviceLocator.registerLazySingleton<LoginRemoteDatasource>(
+      () => LoginRemoteDatasourceImpl(customDio: serviceLocator()));
+
+  serviceLocator.registerLazySingleton<LoginLocalDatasource>(
+      () => LoginLocalDatasourceImpl(sharedPreferences: serviceLocator()));
 }
