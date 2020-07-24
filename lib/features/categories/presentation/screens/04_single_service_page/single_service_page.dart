@@ -88,7 +88,13 @@ class _SingleServicePageState extends State<SingleServicePage> {
               style: kBoldTextStyle,
             ),
             SizedBox(height: 5),
-            _buildWorkReviewItems(),
+            Visibility(
+              visible: _store.serviceFullInfo.qtdPessoasReview > 10,
+              replacement: Text('Novo!',
+                  style: kBoldTextStyle.copyWith(
+                      fontSize: 12, color: Colors.yellow[600])),
+              child: _buildWorkReviewItems(),
+            ),
             SizedBox(height: 10),
             _buildIconButton(
                 FontAwesomeIcons.phoneAlt,
@@ -110,9 +116,11 @@ class _SingleServicePageState extends State<SingleServicePage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        _buildListItemDetailText('300', 'AVALIAÇÕES'),
+        _buildListItemDetailText(
+            _store.serviceFullInfo.qtdPessoasReview.toString(), 'AVALIAÇÕES'),
         SizedBox(width: 10),
-        _buildStarRatingIcon('RATING', '3.8')
+        _buildStarRatingIcon(
+            'RATING', _store.serviceFullInfo.reviewScore.toStringAsFixed(1))
       ],
     );
   }
