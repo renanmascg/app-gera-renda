@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         LoginPage.id: (ctx) => LoginPage(),
         AppRoutes.id: (ctx) => AppRoutes()
       },
-      initialRoute: AppRoutes.id,
+      initialRoute: OnboardingPage.id,
     );
   }
 }
