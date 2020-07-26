@@ -32,6 +32,16 @@ abstract class _LoginStore with Store {
   bool isAuthenticated = false;
 
   @action
+  void changeEmail(String str) {
+    email = str;
+  }
+
+  @action
+  void changePassword(String str) {
+    password = str;
+  }
+
+  @action
   Future signInUser() async {
     statusPage = StatusPage.SEARCHING;
 

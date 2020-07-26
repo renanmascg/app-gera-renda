@@ -76,6 +76,30 @@ mixin _$LoginStore on _LoginStore, Store {
     return _$signInUserAsyncAction.run(() => super.signInUser());
   }
 
+  final _$_LoginStoreActionController = ActionController(name: '_LoginStore');
+
+  @override
+  void changeEmail(String str) {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.changeEmail');
+    try {
+      return super.changeEmail(str);
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changePassword(String str) {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.changePassword');
+    try {
+      return super.changePassword(str);
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
