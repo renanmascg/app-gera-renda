@@ -9,6 +9,8 @@ import 'features/login/presentation/screens/03_create_account/create_account_pag
 import 'features/login/presentation/screens/04_create_account_pass/create_account_pass.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
   await injection_container.init();
   runApp(MyApp());
 }

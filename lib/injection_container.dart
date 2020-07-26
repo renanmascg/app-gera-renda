@@ -1,3 +1,4 @@
+import 'package:flutter_gera_renda/features/login/presentation/mobx/login_store/login_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,7 +31,7 @@ Future<void> init() async {
   // Core
   final sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator.registerLazySingleton(() => CustomDio());
-  serviceLocator.registerSingleton(
+  serviceLocator.registerLazySingleton(
       () => CustomSharedPreferences(sharedPreferences: sharedPreferences));
 }
 
@@ -80,6 +81,8 @@ void categoryInjectionInit() {
 
 void loginInjectionInit() {
   // Init Mobx
+  serviceLocator.registerLazySingleton(
+      () => LoginStore(getSigninUserService: serviceLocator()));
 
   // Init Services
   serviceLocator.registerLazySingleton(
