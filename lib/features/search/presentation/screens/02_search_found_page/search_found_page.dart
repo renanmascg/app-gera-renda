@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/core/shared/styles/colors.dart';
-import 'package:flutter_gera_renda/core/shared/widgets/simple_widgets.dart';
 
+import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
+import '../../../../../core/shared/widgets/simple_widgets.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
 
 
@@ -16,7 +16,7 @@ class SearchFoundPage extends StatelessWidget {
           child: CustomScrollView(
         slivers: <Widget>[
           _buildAppBar(),
-          buildListOfServices(context)
+          buildListOfServices(context, [])
         ],
       ),
     );

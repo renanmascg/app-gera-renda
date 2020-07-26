@@ -23,10 +23,10 @@ abstract class _LoginStore with Store {
   StatusPage statusPage = StatusPage.NORMAL;
 
   @observable
-  String email;
+  String email = '';
 
   @observable
-  String password;
+  String password = '';
 
   @observable
   bool isAuthenticated = false;
@@ -39,6 +39,11 @@ abstract class _LoginStore with Store {
   @action
   void changePassword(String str) {
     password = str;
+  }
+
+  @computed
+  bool get isButtonAvailable {
+    return email.isNotEmpty && password.isNotEmpty;
   }
 
   @action

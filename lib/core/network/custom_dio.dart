@@ -9,7 +9,9 @@ class CustomDio {
 
   CustomDio() {
     _options = BaseOptions(
-      baseUrl: 'http://localhost:3333/',
+      baseUrl: 'http://10.0.2.2:3333/', //android emulator
+      // baseUrl: 'http://localhost:3333/', // ios emulator
+      // baseUrl: 'http://192.168.0.142:3333'/ // physical device
       connectTimeout: 15000,
       contentType: 'application/json'
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
@@ -102,10 +103,14 @@ class _LoginPageState extends State<LoginPage> {
           onChanged: _store.changePassword,
         ),
         SizedBox(height: 24),
-        MainButton(
-          color: kMainGreenColor,
-          text: 'Entrar',
-          onPress: _store.signInUser,
+        Observer(
+          builder: (ctx) {
+            return MainButton(
+              color: kMainGreenColor,
+              text: 'Entrar',
+              onPress: _store.isButtonAvailable ? _store.signInUser : null,
+            );
+          },
         ),
         SizedBox(height: 12),
         _buildLoginRichText(context)

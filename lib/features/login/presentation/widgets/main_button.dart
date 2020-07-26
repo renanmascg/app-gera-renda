@@ -17,13 +17,9 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        minWidth: 220,
-        maxWidth: 220,
-        minHeight: 50,
-        maxHeight: 50
-      ),
+          minWidth: 220, maxWidth: 220, minHeight: 50, maxHeight: 50),
       decoration: BoxDecoration(
-        color: color,
+        color: onPress != null ? color : color.withOpacity(0.5),
         borderRadius: BorderRadius.all(kMainButtonBorderRadius),
       ),
       child: FlatButton(
