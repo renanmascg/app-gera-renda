@@ -5,7 +5,13 @@ import '../../../../core/network/custom_dio.dart';
 import '../models/login_model.dart';
 
 abstract class LoginRemoteDatasource {
-  Future<LoginModel> signInUser({String email, String password});
+  Future<LoginModel> signInUser(
+      {@required String email, @required String password});
+
+  Future<LoginModel> createUser(
+      {@required String email,
+      @required String name,
+      @required String password});
 }
 
 class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
@@ -20,6 +26,19 @@ class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
         "email": email,
         "password": password,
       });
+
+      return LoginModel.fromJson(response.data as Map<String, dynamic>);
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<LoginModel> createUser(
+      {String email, String name, String password}) async {
+    try {
+      final response = await customDio.dio.post('/users',
+          data: {"email": email, "password": password, "name": name});
 
       return LoginModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {

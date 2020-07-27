@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_gera_renda/core/error/exceptions.dart';
-import 'package:flutter_gera_renda/features/login/data/datasources/login_local_datasource.dart';
-import 'package:flutter_gera_renda/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/repository/login_repository.dart';
+import '../datasources/login_local_datasource.dart';
+import '../datasources/login_remote_datasource.dart';
 import '../models/login_model.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
@@ -21,9 +21,20 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, LoginModel>> create(
       {@required String name,
       @required String email,
-      @required String password}) {
-    // TODO: implement create
-    throw UnimplementedError();
+      @required String password}) async {
+    try {
+      final cretedUser = await loginRemoteDatasource.createUser(
+        email: email,
+        password: password,
+        name: name,
+      );
+
+      await loginLocalDatasource.saveUserData(cretedUser);
+
+      return Right(cretedUser);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 
   @override

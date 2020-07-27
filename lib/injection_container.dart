@@ -1,4 +1,3 @@
-import 'package:flutter_gera_renda/features/login/presentation/mobx/login_store/login_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +18,10 @@ import 'features/login/data/datasources/login_local_datasource.dart';
 import 'features/login/data/datasources/login_remote_datasource.dart';
 import 'features/login/data/repositories/login_repository_impl.dart';
 import 'features/login/domain/repository/login_repository.dart';
+import 'features/login/domain/services/create_user_service.dart';
 import 'features/login/domain/services/signin_user_service.dart';
+import 'features/login/presentation/mobx/create_profile_store/create_profile_store.dart';
+import 'features/login/presentation/mobx/login_store/login_store.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -84,9 +86,15 @@ void loginInjectionInit() {
   serviceLocator.registerLazySingleton(
       () => LoginStore(getSigninUserService: serviceLocator()));
 
+  serviceLocator.registerLazySingleton(
+      () => CreateProfileStore(getCreateUserService: serviceLocator()));
+
   // Init Services
   serviceLocator.registerLazySingleton(
       () => SigninUserService(loginRepository: serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+      () => CreateUserService(loginRepository: serviceLocator()));
 
   // Repositories
   serviceLocator.registerLazySingleton<LoginRepository>(
