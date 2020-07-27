@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gera_renda/features/login/presentation/screens/02_login_page/login_page.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
+import '../../../../../injection_container.dart';
+import '../../mobx/create_profile_store/create_profile_store.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
+import '../02_login_page/login_page.dart';
 import '../04_create_account_pass/create_account_pass.dart';
 
 class CreateAccountPage extends StatelessWidget {
   static final String id = 'create_account';
+  final CreateProfileStore _store = serviceLocator<CreateProfileStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class CreateAccountPage extends StatelessWidget {
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal:20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: _buildBody(context),
         ),
       ),
@@ -41,14 +45,27 @@ class CreateAccountPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        MainTextField(labelText: 'Nome'),
+        MainTextField(labelText: 'Nome', onChanged: _store.changeName),
         SizedBox(height: 24),
-        MainTextField(labelText: 'Email'),
+        MainTextField(labelText: 'Email', onChanged: _store.changeEmail),
         SizedBox(height: 24),
-        MainButton(
-          color: kMainGreenColor,
-          text: 'Continue',
-          onPress: () => Navigator.pushNamed(context, CreateAccountPassPage.id),
+        Observer(
+          builder: (ctx) {
+            return Visibility(
+              visible: _store.isEmailButtonAvailable,
+              replacement: MainButton(
+                color: kMainGreenColor,
+                text: 'Continue',
+                onPress: null,
+              ),
+              child: MainButton(
+                color: kMainGreenColor,
+                text: 'Continue',
+                onPress: () =>
+                    Navigator.pushNamed(context, CreateAccountPassPage.id),
+              ),
+            );
+          },
         ),
         SizedBox(height: 12),
         _buildLoginRichText(context)
