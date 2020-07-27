@@ -61,7 +61,7 @@ class OnboardingPage extends StatelessWidget {
             color: kMainGreenColor,
             onPress: () => Navigator.pushNamedAndRemoveUntil(
               context,
-              CreateAccountPage.id,
+              LoginPage.id,
               (Route<dynamic> route) => false,
             ),
             text: 'Vamos começar!',
@@ -77,7 +77,7 @@ class OnboardingPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamedAndRemoveUntil(
         context,
-        LoginPage.id,
+        CreateAccountPage.id,
         (Route<dynamic> route) => false,
       ),
       child: RichText(
@@ -87,9 +87,9 @@ class OnboardingPage extends StatelessWidget {
             color: Colors.black.withOpacity(0.5),
           ),
           children: [
-            TextSpan(text: 'Tem uma conta? '),
+            TextSpan(text: 'Não tem uma conta? '),
             TextSpan(
-              text: 'Bora logar',
+              text: 'Bora criar',
               style: TextStyle(color: kMainGreenColor),
             )
           ],

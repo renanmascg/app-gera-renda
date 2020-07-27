@@ -41,7 +41,8 @@ class _LoginPageState extends State<LoginPage> {
           switch (status) {
             case StatusPage.ERROR:
               Navigator.of(context).pop(context);
-              _scaffoldKey.currentState.showSnackBar(loginSnackbar());
+              _scaffoldKey.currentState
+                  .showSnackBar(errorSnackbar('Email ou Senha Incorretos'));
               break;
             case StatusPage.SEARCHING:
               loadingDialogs(context);

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
 
-SnackBar loginSnackbar() {
+SnackBar errorSnackbar(String message) {
   return SnackBar(
     content: Text(
-      'Email ou Senha Incorretos',
+      message,
       style: kBoldTextStyle.copyWith(
         color: Colors.white,
         fontSize: 14,
