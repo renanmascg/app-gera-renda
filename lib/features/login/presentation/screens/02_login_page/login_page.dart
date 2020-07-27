@@ -9,6 +9,7 @@ import '../../../../../core/shared/texts/login_text.dart';
 import '../../../../../core/shared/widgets/modals/dialogs.dart';
 import '../../../../../core/shared/widgets/snackbars/generic_snackbar.dart';
 import '../../../../../injection_container.dart';
+import '../../../../app_routes/app_routes.dart';
 import '../../mobx/login_store/login_store.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
@@ -49,7 +50,11 @@ class _LoginPageState extends State<LoginPage> {
               break;
             case StatusPage.NORMAL:
               Navigator.of(context).pop(context);
-              break;
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.id,
+                (Route<dynamic> route) => false,
+              );
           }
         },
       ),

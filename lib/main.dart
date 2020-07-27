@@ -10,7 +10,6 @@ import 'features/login/presentation/screens/04_create_account_pass/create_accoun
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
   await injection_container.init();
   runApp(MyApp());
 }

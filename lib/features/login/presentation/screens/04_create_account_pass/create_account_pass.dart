@@ -7,6 +7,7 @@ import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/widgets/modals/dialogs.dart';
 import '../../../../../core/shared/widgets/snackbars/generic_snackbar.dart';
 import '../../../../../injection_container.dart';
+import '../../../../app_routes/app_routes.dart';
 import '../../mobx/create_profile_store/create_profile_store.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/main_text_field.dart';
@@ -53,6 +54,11 @@ class _CreateAccountPassPageState extends State<CreateAccountPassPage> {
               break;
             case CreateProfileStatus.SUCCESS:
               Navigator.of(context).pop(context);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.id,
+                (Route<dynamic> route) => false,
+              );
               break;
             default:
               break;
