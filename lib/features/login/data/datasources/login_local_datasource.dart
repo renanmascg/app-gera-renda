@@ -10,6 +10,8 @@ import '../models/login_model.dart';
 
 abstract class LoginLocalDatasource {
   Future<void> saveUserData(LoginModel loginModel);
+
+  Future<String> getSavedDataString(String str);
 }
 
 class LoginLocalDatasourceImpl implements LoginLocalDatasource {
@@ -27,5 +29,11 @@ class LoginLocalDatasourceImpl implements LoginLocalDatasource {
     } catch (e) {
       throw ServerException();
     }
+  }
+
+  @override
+  Future<String> getSavedDataString(String str) {
+    // TODO: implement getSavedDataString
+    throw UnimplementedError();
   }
 }

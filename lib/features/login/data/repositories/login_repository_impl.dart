@@ -55,10 +55,15 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<Either<Failure, LoginModel>> validateToken({
+  Future<Either<Failure, bool>> validateToken({
     @required String token,
-  }) {
-    // TODO: implement validateToken
-    throw UnimplementedError();
+  }) async {
+    try {
+      await loginRemoteDatasource.validateToken(token: token);
+
+      return Right(true);
+    } on InvalidTokenException {
+      return Left(InvalidTokenFailure());
+    }
   }
 }

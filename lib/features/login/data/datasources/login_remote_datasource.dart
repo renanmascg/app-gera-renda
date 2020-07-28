@@ -12,6 +12,10 @@ abstract class LoginRemoteDatasource {
       {@required String email,
       @required String name,
       @required String password});
+
+  Future<bool> validateToken({
+    @required String token,
+  });
 }
 
 class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
@@ -43,6 +47,19 @@ class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
       return LoginModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw ServerException();
+    }
+  }
+
+  @override
+  Future<bool> validateToken({String token}) async {
+    try {
+      customDio.setNewHeaders({'Authorization': 'Bearer $token'});
+
+      await customDio.dio.get('/sessions/validate-token');
+
+      return true;
+    } catch (e) {
+      throw InvalidTokenException();
     }
   }
 }

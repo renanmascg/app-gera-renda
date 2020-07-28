@@ -16,7 +16,7 @@ abstract class LoginRepository {
     @required String password,
   });
 
-  Future<Either<Failure, LoginModel>> validateToken({
+  Future<Either<Failure, bool>> validateToken({
     @required String token,
   });
 }
