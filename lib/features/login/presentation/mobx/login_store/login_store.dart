@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
+import '../../../data/models/user_model.dart';
 import '../../../domain/services/signin_user_service.dart';
 
 part 'login_store.g.dart';
@@ -30,6 +31,8 @@ abstract class _LoginStore with Store {
 
   @observable
   bool isAuthenticated = false;
+
+  UserModel userModel;
 
   @action
   void changeEmail(String str) {
@@ -61,6 +64,7 @@ abstract class _LoginStore with Store {
       },
       (loginModel) {
         statusPage = StatusPage.NORMAL;
+        userModel = loginModel.user;
         isAuthenticated = true;
       },
     );

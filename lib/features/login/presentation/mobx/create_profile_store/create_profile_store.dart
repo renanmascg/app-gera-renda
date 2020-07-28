@@ -74,8 +74,6 @@ abstract class _CreateProfileStore with Store {
   Future<void> createUser() async {
     statusPage = CreateProfileStatus.CREATING;
 
-    await Future.delayed(Duration(seconds: 3));
-
     final createUserParams =
         CreateUserParams(name: name, email: email, password: password);
 

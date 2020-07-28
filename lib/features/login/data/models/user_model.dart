@@ -34,4 +34,8 @@ class UserModel {
     data['updatedAt'] = updatedAt;
     return data;
   }
+
+  String getFirstName() {
+    return name.split(' ')[0];
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/core/shared/styles/colors.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
@@ -7,6 +8,7 @@ import '../../../../../core/shared/texts/categories_main_text.dart';
 import '../../../../../core/shared/widgets/grid_button_widget.dart';
 import '../../../../../core/shared/widgets/simple_widgets.dart';
 import '../../../../../injection_container.dart';
+import '../../../../login/presentation/mobx/login_store/login_store.dart';
 import '../../mobx/categories/categories_store.dart';
 import '../02_all_categories/all_categories_page.dart';
 
@@ -19,6 +21,7 @@ class CategoriesMainPage extends StatefulWidget {
 
 class _CategoriesMainPageState extends State<CategoriesMainPage> {
   final CategoriesStore _store = serviceLocator<CategoriesStore>();
+  final LoginStore _loginStore = serviceLocator<LoginStore>();
 
   final List<String> categoriesList = [
     'Mudanca',
@@ -73,10 +76,21 @@ class _CategoriesMainPageState extends State<CategoriesMainPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text('Olá', style: kSecondaryTextStyle),
-                Text('Renan', style: kBoldTextStyle),
+                Text(
+                  _loginStore.userModel.getFirstName(),
+                  style: kBoldTextStyle,
+                ),
               ],
             ),
-            CircleAvatar()
+            CircleAvatar(
+              backgroundColor: kMainGreenColor.withOpacity(0.5),
+              radius: 25,
+              child: FadeInImage(
+                image: NetworkImage(_loginStore.userModel.imageUrl),
+                placeholder: AssetImage('assets/core_user.png'),
+                width: 40,
+              ),
+            )
           ],
         ),
       ),
