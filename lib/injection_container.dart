@@ -19,7 +19,9 @@ import 'features/login/data/datasources/login_remote_datasource.dart';
 import 'features/login/data/repositories/login_repository_impl.dart';
 import 'features/login/domain/repository/login_repository.dart';
 import 'features/login/domain/services/create_user_service.dart';
+import 'features/login/domain/services/get_user_info_service.dart';
 import 'features/login/domain/services/signin_user_service.dart';
+import 'features/login/domain/services/user_is_logged.dart';
 import 'features/login/presentation/mobx/create_profile_store/create_profile_store.dart';
 import 'features/login/presentation/mobx/login_store/login_store.dart';
 
@@ -83,8 +85,11 @@ void categoryInjectionInit() {
 
 void loginInjectionInit() {
   // Init Mobx
-  serviceLocator.registerLazySingleton(
-      () => LoginStore(getSigninUserService: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoginStore(
+        getSigninUserService: serviceLocator(),
+        getUserInfoService: serviceLocator(),
+        getUserIsLoggedService: serviceLocator(),
+      ));
 
   serviceLocator.registerLazySingleton(
       () => CreateProfileStore(getCreateUserService: serviceLocator()));
@@ -95,6 +100,14 @@ void loginInjectionInit() {
 
   serviceLocator.registerLazySingleton(
       () => CreateUserService(loginRepository: serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+      () => GetUserInfoService(customSharedPreferences: serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => UserIsLoggedService(
+        loginRepository: serviceLocator(),
+        customSharedPreferences: serviceLocator(),
+      ));
 
   // Repositories
   serviceLocator.registerLazySingleton<LoginRepository>(

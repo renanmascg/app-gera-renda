@@ -9,3 +9,7 @@ abstract class Failure {
 class ServerFailure extends Failure {}
 
 class GeolocatorAccessFailure extends Failure {}
+
+class InvalidTokenFailure extends Failure {}
+
+class NoTokenFailure extends Failure {}
