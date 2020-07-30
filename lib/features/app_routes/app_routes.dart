@@ -13,8 +13,26 @@ import '../profile/presentation/01_main_profile_page/main_profile_page.dart';
 import '../search/presentation/screens/01_search_page/search_page.dart';
 import '../search/presentation/screens/02_search_found_page/search_found_page.dart';
 
-class AppRoutes extends StatelessWidget {
+class AppRoutes extends StatefulWidget {
   static final String id = 'app_routes';
+
+  @override
+  _AppRoutesState createState() => _AppRoutesState();
+}
+
+class _AppRoutesState extends State<AppRoutes> {
+  final CupertinoTabController controller = CupertinoTabController();
+
+  final GlobalKey<NavigatorState> categoriesMainTabNavKey =
+      GlobalKey<NavigatorState>();
+
+  final GlobalKey<NavigatorState> searchTabNavKey = GlobalKey<NavigatorState>();
+
+  final GlobalKey<NavigatorState> lastSearchTabNavKey =
+      GlobalKey<NavigatorState>();
+
+  final GlobalKey<NavigatorState> mainProfileTabNavKey =
+      GlobalKey<NavigatorState>();
 
   final Map<String, Widget Function(BuildContext)> routes = {
     CategoriesMainPage.id: (ctx) => CategoriesMainPage(),
@@ -28,12 +46,33 @@ class AppRoutes extends StatelessWidget {
     MainProfilePage.id: (ctx) => MainProfilePage()
   };
 
+  GlobalKey<NavigatorState> currentNavigatorKey() {
+    switch (controller.index) {
+      case 0:
+        return categoriesMainTabNavKey;
+        break;
+      case 1:
+        return searchTabNavKey;
+        break;
+      case 2:
+        return lastSearchTabNavKey;
+        break;
+      case 3:
+        return mainProfileTabNavKey;
+        break;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => Future<bool>.value(false),
+      onWillPop: () async {
+        return !await currentNavigatorKey().currentState.maybePop();
+      },
       child: Material(
         child: CupertinoTabScaffold(
+          controller: controller,
           tabBar: CupertinoTabBar(
             backgroundColor: Colors.white,
             activeColor: kMainTextBoldColor,
@@ -53,6 +92,7 @@ class AppRoutes extends StatelessWidget {
             switch (index) {
               case 0:
                 return CupertinoTabView(
+                  navigatorKey: categoriesMainTabNavKey,
                   routes: routes,
                   builder: (_) {
                     return CategoriesMainPage();
@@ -60,6 +100,7 @@ class AppRoutes extends StatelessWidget {
                 );
               case 1:
                 return CupertinoTabView(
+                  navigatorKey: searchTabNavKey,
                   routes: routes,
                   builder: (_) {
                     return SearchPage();
@@ -67,6 +108,7 @@ class AppRoutes extends StatelessWidget {
                 );
               case 2:
                 return CupertinoTabView(
+                  navigatorKey: lastSearchTabNavKey,
                   routes: routes,
                   builder: (_) {
                     return LastServiceCalledPage();
@@ -74,6 +116,7 @@ class AppRoutes extends StatelessWidget {
                 );
               case 3:
                 return CupertinoTabView(
+                  navigatorKey: mainProfileTabNavKey,
                   routes: routes,
                   builder: (_) {
                     return MainProfilePage();
