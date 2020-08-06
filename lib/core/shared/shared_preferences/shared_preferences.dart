@@ -14,4 +14,8 @@ class CustomSharedPreferences {
     final pref = sharedPreferences.getString(key);
     return pref ?? '';
   }
+
+  Future removePreference(String key) async {
+    await sharedPreferences.remove(key);
+  }
 }
