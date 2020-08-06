@@ -13,7 +13,7 @@ abstract class CategoriesRemoteDatasource {
       {double lat, double long, double distance});
 
   Future<ServicesModel> getServicesByCategory(
-      {double lat, double long, double distance, String categoryId});
+      {double lat, double long, double distance, String categoryId, String sort});
 
   Future<ServiceFullInfo> getServiceFullInfo(
       {String id, double lat, double long});
@@ -50,7 +50,7 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
 
   @override
   Future<ServicesModel> getServicesByCategory(
-      {double lat, double long, double distance, String categoryId}) async {
+      {double lat, double long, double distance, String categoryId, String sort}) async {
     try {
       final response =
           await customDio.dio.post('/services/categorie-service', data: {
@@ -58,6 +58,8 @@ class CategorioesRemoteDatasourceImpl implements CategoriesRemoteDatasource {
         "long": long,
         "distance": distance,
         "categorieId": categoryId,
+      }, queryParameters: {
+        'sort': sort
       });
 
       return ServicesModel.fromJson(response.data as Map<String, dynamic>);

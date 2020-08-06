@@ -19,6 +19,7 @@ class GetServicesByCategoryService
       lat: params.latitude,
       long: params.longitude,
       distance: params.distance,
+      sort: params.orderBy.split('.')[1]
     );
 
     return categoriesParams;
@@ -26,6 +27,7 @@ class GetServicesByCategoryService
 }
 
 class GeoCategoryParams {
+  final String orderBy;
   final double latitude;
   final double longitude;
   final double distance;
@@ -36,5 +38,6 @@ class GeoCategoryParams {
     @required this.longitude,
     @required this.distance,
     @required this.categoryId,
+    @required this.orderBy,
   });
 }

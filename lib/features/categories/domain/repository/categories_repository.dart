@@ -7,10 +7,18 @@ import '../../data/models/services_model.dart';
 
 abstract class CategoriesRepository {
   Future<Either<Failure, CategoriesModel>> getAllCategories();
+  
   Future<Either<Failure, ServicesModel>> getAllNearMeServices(
       {double lat, double long, double distance});
-  Future<Either<Failure, ServicesModel>> getServicesByCategory(
-      {double lat, double long, double distance, String categoryId});
+
+  Future<Either<Failure, ServicesModel>> getServicesByCategory({
+    double lat,
+    double long,
+    double distance,
+    String categoryId,
+    String sort,
+  });
+
   Future<Either<Failure, ServiceFullInfo>> getServiceFullInfo(
       {String id, double lat, double long});
 }
