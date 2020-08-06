@@ -33,7 +33,7 @@ class GridButtonWidget extends StatelessWidget {
               flex: 2,
               child: Image.network(
                 categorie.imageUrl,
-                height: 60,
+                height: 70,
               ),
             ),
             SizedBox(height: 10),

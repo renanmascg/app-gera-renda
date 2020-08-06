@@ -25,7 +25,7 @@ class AllCategoriesPage extends StatelessWidget {
               style: kBoldTextStyle.copyWith(fontSize: 22),
             ),
           ),
-          _buildCategoriesGrid()
+          _buildCategoriesGrid(),
         ],
       ),
     );
@@ -33,7 +33,7 @@ class AllCategoriesPage extends StatelessWidget {
 
   Widget _buildCategoriesGrid() {
     return SliverPadding(
-      padding: EdgeInsets.only(right: 20, left: 20, top: 24),
+      padding: EdgeInsets.only(right: 20, left: 20, top: 24, bottom: 24),
       sliver: SliverGrid.count(
         crossAxisCount: 3,
         crossAxisSpacing: 20,
@@ -61,8 +61,8 @@ Widget _buildGridItem(CategorieModel categorie) {
       children: [
         Image.network(
           categorie.imageUrl,
-          width: 55,
-          height: 55,
+          width: 60,
+          height: 60,
         ),
         SizedBox(
           height: 10,
@@ -75,7 +75,7 @@ Widget _buildGridItem(CategorieModel categorie) {
               textAlign: TextAlign.center,
             ),
           ),
-        )
+        ),
       ],
     ),
   );

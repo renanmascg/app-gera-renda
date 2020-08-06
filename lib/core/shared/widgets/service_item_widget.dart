@@ -96,8 +96,8 @@ class ServiceItemWidget extends StatelessWidget {
           ),
           Image.network(
             service.categorieUrl,
-            width: 30,
-            height: 30,
+            width: 45,
+            height: 45,
           )
         ],
       ),

@@ -23,15 +23,6 @@ class _CategoriesMainPageState extends State<CategoriesMainPage> {
   final CategoriesStore _store = serviceLocator<CategoriesStore>();
   final LoginStore _loginStore = serviceLocator<LoginStore>();
 
-  final List<String> categoriesList = [
-    'Mudanca',
-    'Casa',
-    'Eletrica',
-    'Pet',
-    'Beleza',
-    'Segurança',
-  ];
-
   @override
   void initState() {
     super.initState();
