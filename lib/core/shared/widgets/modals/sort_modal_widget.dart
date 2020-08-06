@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../features/categories/presentation/mobx/single_categorie/single_categorie_store.dart';
+import '../../../../injection_container.dart';
 import '../../styles/colors.dart';
 import '../../styles/text_styles.dart';
 
 class SortModalWidget extends StatelessWidget {
-  final SingleCategorieStore store;
-
-  const SortModalWidget({this.store});
+  final SingleCategorieStore _store = serviceLocator<SingleCategorieStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +31,51 @@ class SortModalWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              _buildIconButton(context, FontAwesomeIcons.sort, 'Padrão', () {}),
+              _buildIconButton(
+                context: context,
+                icon: FontAwesomeIcons.sort,
+                isActive: _store.sortMethod == SortMethod.DEFAULT,
+                text: 'Padrão',
+                onTap: () {
+                  _store.sortMethod = SortMethod.DEFAULT;
+                  _store.fetchData();
+                },
+              ),
               SizedBox(width: 10),
               _buildIconButton(
-                  context, FontAwesomeIcons.mapMarkerAlt, 'Distância', () {}),
+                  context: context,
+                  isActive: _store.sortMethod == SortMethod.DISTANCE,
+                  icon: FontAwesomeIcons.mapMarkerAlt,
+                  text: 'Distância',
+                  onTap: () {
+                    _store.sortMethod = SortMethod.DISTANCE;
+                    _store.fetchData();
+                  }),
               SizedBox(width: 10),
               _buildIconButton(
-                  context, FontAwesomeIcons.star, 'Avaliação', () {}),
+                context: context,
+                isActive: _store.sortMethod == SortMethod.RANKING,
+                icon: FontAwesomeIcons.star,
+                text: 'Avaliação',
+                onTap: () {
+                  _store.sortMethod = SortMethod.RANKING;
+                  _store.fetchData();
+                },
+              ),
             ],
           )
         ],
       ),
     );
   }
-
-  Widget _buildIconButton(
+  
+  Widget _buildIconButton({
     BuildContext context,
+    bool isActive,
     IconData icon,
     String text,
     void Function() onTap,
-  ) {
+  }) {
     return Column(
       children: <Widget>[
         GestureDetector(
@@ -60,7 +84,8 @@ class SortModalWidget extends StatelessWidget {
             onTap();
           },
           child: CircleAvatar(
-            backgroundColor: kMainGreenColor.withOpacity(0.2),
+            backgroundColor:
+                isActive ? kMainGreenColor : kMainGreenColor.withOpacity(0.2),
             radius: 40,
             child: Icon(
               icon,

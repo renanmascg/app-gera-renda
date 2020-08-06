@@ -10,6 +10,8 @@ import '../../../domain/services/get_user_location_service.dart';
 
 part 'single_categorie_store.g.dart';
 
+enum SortMethod { DEFAULT, DISTANCE, RANKING }
+
 class SingleCategorieStore extends _SingleCategorieStore
     with _$SingleCategorieStore {
   final GetUserLocationService getUserLocationService;
@@ -41,6 +43,8 @@ abstract class _SingleCategorieStore with Store {
 
   String categoryId = '';
 
+  SortMethod sortMethod = SortMethod.DEFAULT;
+
   @action
   Future<void> fetchData() async {
     statusPage = StatusPage.SEARCHING;
@@ -70,6 +74,7 @@ abstract class _SingleCategorieStore with Store {
       latitude: position.latitude,
       longitude: position.longitude,
       categoryId: categoryId,
+      orderBy: sortMethod.toString()
     );
 
     final servicesOrFailure = await servicesByCategoryService.exec(params);

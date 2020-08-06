@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../../core/network/status_page.dart';
 import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
+import '../../../../../core/shared/widgets/modals/generic_modal_sheet.dart';
 import '../../../../../core/shared/widgets/service_item_widget.dart';
 import '../../../../../injection_container.dart';
 import '../../../data/models/categorie_model.dart';
@@ -76,10 +77,8 @@ class _CategoriePageState extends State<CategoriePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              SizedBox(width: 20),
-              _buildChip('Filtrar'),
               SizedBox(width: 10),
-              _buildChip('Ordenar')
+              _buildChip('Ordenar', context)
             ],
           ),
         ),
@@ -87,15 +86,20 @@ class _CategoriePageState extends State<CategoriePage> {
     );
   }
 
-  Widget _buildChip(String text) {
-    return Chip(
-      label: Text(
-        text,
-        style: kChipTextStyle,
+  Widget _buildChip(String text, BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        showSortModalSheet(context);
+      },
+      child: Chip(
+        label: Text(
+          text,
+          style: kChipTextStyle,
+        ),
+        padding: EdgeInsets.all(5),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(kMainButtonBorderRadius)),
       ),
-      padding: EdgeInsets.all(5),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(kMainButtonBorderRadius)),
     );
   }
 
