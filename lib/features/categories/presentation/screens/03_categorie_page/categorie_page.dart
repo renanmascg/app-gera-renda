@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gera_renda/core/shared/widgets/error_widgets/network_error_widget.dart';
+import 'package:flutter_gera_renda/core/shared/widgets/error_widgets/no_results_found_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
@@ -38,12 +40,20 @@ class _CategoriePageState extends State<CategoriePage> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (ctx) {
-        if (_store.statusPage != StatusPage.NORMAL) {
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+        switch (_store.statusPage) {
+          case StatusPage.SEARCHING:
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          case StatusPage.ERROR:
+            return NetworkErrorWidget(onPress: _store.fetchData);
+          default:
+        }
+
+        if (_store.services.isEmpty) {
+          return NoResultsFoundWidget(onPress: () {});
         }
 
         return Scaffold(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gera_renda/core/shared/styles/colors.dart';
+import 'package:flutter_gera_renda/core/shared/widgets/error_widgets/network_error_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/network/status_page.dart';
@@ -33,10 +34,15 @@ class _CategoriesMainPageState extends State<CategoriesMainPage> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (ctx) {
-        if (_store.statusPage != StatusPage.NORMAL) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+        switch (_store.statusPage) {
+          case StatusPage.SEARCHING:
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          case StatusPage.ERROR:
+            return NetworkErrorWidget(onPress: _store.fetchData);
+          default:
+            break;
         }
 
         return CustomScrollView(
