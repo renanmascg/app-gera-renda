@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../../core/shared/styles/colors.dart';
 import '../../../../../core/shared/styles/text_styles.dart';
 import '../../../../../core/shared/texts/categories_main_text.dart';
+import '../../../../../core/shared/widgets/grid_button_widget.dart';
 import '../../../../../core/shared/widgets/sliver_main_header_widget.dart';
 import '../../../../../injection_container.dart';
-import '../../../data/models/categorie_model.dart';
 import '../../mobx/categories/categories_store.dart';
 
 class AllCategoriesPage extends StatelessWidget {
@@ -40,43 +40,10 @@ class AllCategoriesPage extends StatelessWidget {
         mainAxisSpacing: 20,
         childAspectRatio: 0.9,
         children: _store.categories.map((cat) {
-          return _buildGridItem(cat);
+          return GridButtonWidget(categorie: cat);
         }).toList(),
       ),
     );
   }
 }
 
-Widget _buildGridItem(CategorieModel categorie) {
-  return Container(
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(6),
-      boxShadow: [kMainBoxShadow],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.network(
-          categorie.imageUrl,
-          width: 60,
-          height: 60,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: Center(
-            child: Text(
-              categorie.name,
-              style: kGridTextStyle,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
