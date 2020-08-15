@@ -18,4 +18,12 @@ class CustomSharedPreferences {
   Future removePreference(String key) async {
     await sharedPreferences.remove(key);
   }
+
+  Future setStringList(String key, List<String> list) async {
+    await sharedPreferences.setStringList(key, list);
+  }
+
+  Future<List<String>> getStringList(String key) async {
+    return sharedPreferences.getStringList(key);
+  }
 }

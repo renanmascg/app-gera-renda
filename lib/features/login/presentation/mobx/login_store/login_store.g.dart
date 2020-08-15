@@ -84,6 +84,13 @@ mixin _$LoginStore on _LoginStore, Store {
     return _$signInUserAsyncAction.run(() => super.signInUser());
   }
 
+  final _$userIsLoggedAsyncAction = AsyncAction('_LoginStore.userIsLogged');
+
+  @override
+  Future<bool> userIsLogged() {
+    return _$userIsLoggedAsyncAction.run(() => super.userIsLogged());
+  }
+
   final _$_LoginStoreActionController = ActionController(name: '_LoginStore');
 
   @override

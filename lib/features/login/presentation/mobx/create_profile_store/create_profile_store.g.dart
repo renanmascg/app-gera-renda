@@ -118,7 +118,7 @@ mixin _$CreateProfileStore on _CreateProfileStore, Store {
   final _$createUserAsyncAction = AsyncAction('_CreateProfileStore.createUser');
 
   @override
-  Future<dynamic> createUser() {
+  Future<void> createUser() {
     return _$createUserAsyncAction.run(() => super.createUser());
   }
 
