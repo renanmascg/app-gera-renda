@@ -8,6 +8,7 @@ import '../../../../core/shared/shared_preferences/shared_preferences.dart';
 
 abstract class SearchLocalRepository {
   Future<void> saveRecentSearch(String query);
+  Future<List<String>> getRecentSearch();
 }
 
 class SearchLocalRepositoryImpl implements SearchLocalRepository {
@@ -28,6 +29,17 @@ class SearchLocalRepositoryImpl implements SearchLocalRepository {
 
       await customPreferences.setStringList(
           pref_constants.RECENT_QUERYS, top10RecentSearches);
+    } catch (e) {
+      throw LocalSaveException();
+    }
+  }
+
+  @override
+  Future<List<String>> getRecentSearch() async {
+    try {
+      final recentKeywords =
+          await customPreferences.getStringList(pref_constants.RECENT_QUERYS);
+      return recentKeywords;
     } catch (e) {
       throw LocalSaveException();
     }

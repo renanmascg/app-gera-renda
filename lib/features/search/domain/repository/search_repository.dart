@@ -10,4 +10,6 @@ abstract class SearchRepository {
     @required double lat,
     @required double long,
   });
+
+  Future<Either<Failure, List<String>>> recentKeywords();
 }

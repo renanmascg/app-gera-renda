@@ -36,4 +36,15 @@ class SearchRepositoryImpl implements SearchRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> recentKeywords() async {
+    try {
+      final words = await localRepository.getRecentSearch();
+
+      return Right(words);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
 }

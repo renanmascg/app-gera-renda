@@ -1,8 +1,12 @@
 abstract class Failure {
-  String message;
+  String text;
 
   void setMessage(String message) {
-    this.message = message;
+    text = message;
+  }
+
+  String message() {
+    return text;
   }
 }
 
@@ -13,3 +17,9 @@ class GeolocatorAccessFailure extends Failure {}
 class InvalidTokenFailure extends Failure {}
 
 class NoTokenFailure extends Failure {}
+
+class GeolocationFailure extends Failure {
+  GeolocationFailure() {
+    text = 'Localização não habilitada';
+  }
+}
